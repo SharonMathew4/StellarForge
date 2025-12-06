@@ -1,0 +1,12 @@
+BasedOnStyle: Microsoft
+ColumnLimit: 1000
+NamespaceIndentation: All
+UseTab: ForIndentation
+IndentWidth: 4
+TabWidth: 4
+
+# Braces on new line for classes
+BreakBeforeBraces: Allman
+
+# Put `public:` / `private:` flush-left (no extra indent)
+AccessModifierOffset: -4
