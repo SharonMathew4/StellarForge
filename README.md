@@ -1,7 +1,7 @@
 # StellarForge
 
 build command:<br>
-```
+```bash
 mkdir out && cd out && cmake .. && make -j12 && cd - && ./Project/ParticleSim/ParticleSim
 ```
 
