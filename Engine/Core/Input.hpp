@@ -1,4 +1,5 @@
 #pragma once 
+#include <glm/glm.hpp>
 
 namespace Unknown
 {
@@ -7,6 +8,7 @@ namespace Unknown
 	{
 		glm::ivec2 position = glm::ivec2(0);
 		glm::ivec2 offset = glm::ivec2(0);
+		glm::vec2 scroll = glm::vec2(0);
 		bool leftPress = false;
 		bool middlePress = false;
 		bool rightPress = false;

@@ -72,6 +72,9 @@ class ParticleSim : public Unknown::Application
 
 	void Render();
     void UpdatePositions();
+	void ProcessInput();
+	void ProcessMouseInput();
+	void ProcessKeyboardInput();
 
-    glm::vec3 GetMouseWorldPosition();
+    glm::vec3 GetMouseWorldPosition(const Unknown::CameraProperty& property);
 };

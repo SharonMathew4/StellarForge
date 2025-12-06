@@ -139,7 +139,7 @@ void Renderer2D::Terminate()
 void Renderer2D::BeginFrame()
 {
     mRenderCommand->ClearColorBuffer();
-    CameraProperty property;
+    CameraProperty property = GetCamera().GetProperty();
     property.size.x = float(mViewport.size.x) / float(mViewport.size.y);
     property.size.y = float(mViewport.size.y) / float(mViewport.size.y); // = 1.f
     property.projectionType = CameraProjectionType::Orthographic;
@@ -201,12 +201,12 @@ void Renderer2D::PushCircle(const Circle &circle)
     vertices[2].uv = glm::vec2(0, 0);
     vertices[3].uv = glm::vec2(0, 1);
 
-    glm::mat4 transformMatrix = circle.transform.GetMatrix();
+    // glm::mat4 transformMatrix = circle.transform.GetMatrix();
 
     for (int i = 0; i < sizeof(vertices) / sizeof(CircleVertex); i++)
     {
 
-        vertices[i].position = glm::vec3(transformMatrix * glm::vec4(vertices[i].position, 1.0));
+        vertices[i].position = (vertices[i].position * circle.transform.scale) + circle.transform.position;
         vertices[i].color = circle.color;
 
         mCircleVertices.push_back(vertices[i]);
@@ -312,13 +312,27 @@ void Renderer2D::FlushCircle()
         return;
 
     mCircleShader->Bind();
-    mCircleVertexBuffer.reset(VertexBuffer::Create(mCircleVertices.size() * sizeof(CircleVertex), mCircleVertices.data()));
-    mCircleIndexBuffer.reset(IndexBuffer::Create(mCircleIndices.size() * sizeof(uint32_t), mCircleIndices.data()));
 
-    CircleVertex::SetVertexBufferLayout(mCircleVertexBuffer);
+    if(mCircleVertexBufferSize < mCircleVertices.size() * sizeof(CircleVertex))
+    {
+        mCircleVertexBuffer.reset(VertexBuffer::Create(mCircleVertices.size() * sizeof(CircleVertex), nullptr));
+        CircleVertex::SetVertexBufferLayout(mCircleVertexBuffer);
+        mCircleVertexBufferSize = mCircleVertices.size() * sizeof(CircleVertex);
+
+        
+    }
+    if(mCircleIndexBufferSize < mCircleIndices.size() * sizeof(uint32_t))
+    {
+        mCircleIndexBuffer.reset(IndexBuffer::Create(mCircleIndices.size() * sizeof(uint32_t), nullptr));
+        mCircleIndexBufferSize = mCircleIndices.size() * sizeof(uint32_t);
+    }
+
 
     mCircleVertexBuffer->Bind();
     mCircleIndexBuffer->Bind();
+
+    mCircleVertexBuffer->SubData(mCircleVertexBufferSize, mCircleVertices.data());
+    mCircleIndexBuffer->SubData(mCircleIndexBufferSize, mCircleIndices.data());
 
     glm::mat4 view = mCamera.GetViewMatrix();
     glm::mat4 projection = mCamera.GetProjectionMatrix();

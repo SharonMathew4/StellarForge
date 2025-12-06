@@ -126,6 +126,9 @@ namespace Unknown
 		Ref<RenderCommand> mRenderCommand;
 		Camera mCamera;
 
+		size_t mCircleVertexBufferSize = 0;
+		size_t mCircleIndexBufferSize = 0;
+
 		Viewport mViewport;
 	};
 }

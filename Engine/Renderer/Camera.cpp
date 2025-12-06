@@ -36,7 +36,7 @@ namespace Unknown
 		{
 			float left = -(mProperty.size.x / mProperty.size.y);
 			float right = mProperty.size.x / mProperty.size.y;
-			mProjectionMatrix = glm::ortho(left, right, -1.f, 1.f, mProperty.nearPlane, mProperty.farPlane);
+			mProjectionMatrix = glm::ortho(left * mProperty.zoom, right * mProperty.zoom, -1.f * mProperty.zoom, 1.f * mProperty.zoom, mProperty.nearPlane, mProperty.farPlane);
 		}
 	}
 

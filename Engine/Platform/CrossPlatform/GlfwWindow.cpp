@@ -73,6 +73,12 @@ namespace Unknown
 		}
 	}
 
+	void scrollCallback(GLFWwindow* window, double xoffset, double yoffset)
+	{
+		GlfwUserPointer& mUserPointer = GET_GLFW_USER_POINTER();
+		mUserPointer.input->mouse.scroll = {xoffset, yoffset};
+	}
+
 	GlfwWindow::GlfwWindow(const WindowProperty& property)
 	{
 		mProperty = property;
@@ -118,6 +124,7 @@ namespace Unknown
 		glfwSetCursorPosCallback(mWindow, cursorPositionCallback);
 		glfwSetCursorEnterCallback(mWindow, cursorEnterCallback);
 		glfwSetMouseButtonCallback(mWindow, mouseButtonCallback);
+		glfwSetScrollCallback(mWindow, scrollCallback);
 
 		if (mProperty.fullscreen)
 		{
@@ -415,6 +422,7 @@ namespace Unknown
 	void GlfwWindow::ProcessInput()
 	{
 		mInput.mouse.offset = { 0, 0 };
+		mInput.mouse.scroll = { 0, 0 };
 		glfwPollEvents();
 		glfwGetWindowSize(mWindow, &mProperty.size.x, &mProperty.size.y);
 		mProperty.aspectRatio = float(mProperty.size.x) / float(mProperty.size.y);

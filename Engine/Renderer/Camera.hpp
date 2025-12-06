@@ -25,6 +25,7 @@ struct CameraProperty
     glm::vec3 position = glm::vec3(0.f, 0.f, -1.f);
     glm::vec3 lookAt = glm::vec3(0.f, 0.f, 1.f);
     glm::vec3 up = glm::vec3(0.f, 1.f, 0.f);
+    float zoom = 1.f;
 };
 
 class Camera
