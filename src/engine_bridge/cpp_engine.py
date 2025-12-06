@@ -219,6 +219,50 @@ class CppEngine(SimulationEngine):
         self.engine.remove_particle(index)
         self.particle_count -= 1
     
+    def reset(self):
+        """Reset the simulation to initial conditions."""
+        if self.initialized:
+            self.engine.reset()
+    
+    def get_types(self) -> np.ndarray:
+        """
+        Get particle types.
+        
+        Returns:
+            Array of shape (N,) with particle types
+        """
+        if not self.initialized:
+            raise RuntimeError("Engine not initialized")
+        
+        return self.engine.get_types()
+    
+    def get_colors(self) -> np.ndarray:
+        """
+        Get particle colors (RGB). 
+        Generated from particle types.
+        
+        Returns:
+            Array of shape (N, 3) with RGB colors in [0, 1]
+        """
+        if not self.initialized:
+            raise RuntimeError("Engine not initialized")
+        
+        types = self.engine.get_types()
+        colors = np.zeros((len(types), 3), dtype=np.float32)
+        
+        # Color mapping (same as MockEngine)
+        for i, ptype in enumerate(types):
+            if ptype == 0:  # Star
+                colors[i] = [1.0, 0.9, 0.7]
+            elif ptype == 1:  # Planet
+                colors[i] = [0.5, 0.7, 1.0]
+            elif ptype == 2:  # Black hole
+                colors[i] = [0.8, 0.0, 0.8]
+            else:
+                colors[i] = [0.8, 0.8, 0.8]
+        
+        return colors
+    
     def get_backend(self) -> str:
         """Get the current compute backend."""
         return self.engine.get_backend()

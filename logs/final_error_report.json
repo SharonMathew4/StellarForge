@@ -1,32 +1,32 @@
 {
-  "session_id": "45447501-2605-4598-825a-fcdb81985473",
-  "export_timestamp": "2025-12-06T15:40:22.005913",
-  "total_errors": 11,
+  "session_id": "1b8f94bb-1f87-48e9-a851-fdce625cf371",
+  "export_timestamp": "2025-12-06T17:02:33.825030",
+  "total_errors": 10,
   "errors": [
     {
-      "timestamp": "2025-12-06T15:39:53.906076",
+      "timestamp": "2025-12-06T16:35:51.868268",
       "severity": "INFO",
       "error_type": "GeneralError",
       "error_code": "GENERAL_ERROR",
-      "message": "Application started (engine: cpp, backend: cuda)",
+      "message": "Application started (engine: cpp, backend: openmp)",
       "context": {},
       "traceback": "",
       "component": "MAIN",
-      "session_id": "45447501-2605-4598-825a-fcdb81985473"
+      "session_id": "1b8f94bb-1f87-48e9-a851-fdce625cf371"
     },
     {
-      "timestamp": "2025-12-06T15:39:54.980875",
-      "severity": "WARNING",
+      "timestamp": "2025-12-06T16:35:52.973683",
+      "severity": "INFO",
       "error_type": "GeneralError",
       "error_code": "GENERAL_ERROR",
-      "message": "C++ engine requested but not available. Using MockEngine.",
+      "message": "Using C++ physics engine with backend: openmp",
       "context": {},
       "traceback": "",
       "component": "MAIN_WINDOW_INIT",
-      "session_id": "45447501-2605-4598-825a-fcdb81985473"
+      "session_id": "1b8f94bb-1f87-48e9-a851-fdce625cf371"
     },
     {
-      "timestamp": "2025-12-06T15:39:55.055267",
+      "timestamp": "2025-12-06T16:35:53.077658",
       "severity": "INFO",
       "error_type": "GeneralError",
       "error_code": "GENERAL_ERROR",
@@ -34,10 +34,10 @@
       "context": {},
       "traceback": "",
       "component": "RENDERER_INIT",
-      "session_id": "45447501-2605-4598-825a-fcdb81985473"
+      "session_id": "1b8f94bb-1f87-48e9-a851-fdce625cf371"
     },
     {
-      "timestamp": "2025-12-06T15:39:55.156996",
+      "timestamp": "2025-12-06T16:35:53.202664",
       "severity": "INFO",
       "error_type": "GeneralError",
       "error_code": "GENERAL_ERROR",
@@ -45,10 +45,10 @@
       "context": {},
       "traceback": "",
       "component": "UI_INIT",
-      "session_id": "45447501-2605-4598-825a-fcdb81985473"
+      "session_id": "1b8f94bb-1f87-48e9-a851-fdce625cf371"
     },
     {
-      "timestamp": "2025-12-06T15:39:55.157122",
+      "timestamp": "2025-12-06T16:35:53.202828",
       "severity": "INFO",
       "error_type": "GeneralError",
       "error_code": "GENERAL_ERROR",
@@ -56,10 +56,10 @@
       "context": {},
       "traceback": "",
       "component": "ENGINE_INIT",
-      "session_id": "45447501-2605-4598-825a-fcdb81985473"
+      "session_id": "1b8f94bb-1f87-48e9-a851-fdce625cf371"
     },
     {
-      "timestamp": "2025-12-06T15:39:55.265882",
+      "timestamp": "2025-12-06T16:35:53.329438",
       "severity": "INFO",
       "error_type": "GeneralError",
       "error_code": "GENERAL_ERROR",
@@ -69,24 +69,10 @@
       },
       "traceback": "",
       "component": "ENGINE_INIT",
-      "session_id": "45447501-2605-4598-825a-fcdb81985473"
+      "session_id": "1b8f94bb-1f87-48e9-a851-fdce625cf371"
     },
     {
-      "timestamp": "2025-12-06T15:39:55.320436",
-      "severity": "INFO",
-      "error_type": "GeneralError",
-      "error_code": "GENERAL_ERROR",
-      "message": "MockEngine initialized with 6523 particles",
-      "context": {
-        "particle_count": 6523,
-        "distribution": "sphere"
-      },
-      "traceback": "",
-      "component": "MOCK_ENGINE_INIT",
-      "session_id": "45447501-2605-4598-825a-fcdb81985473"
-    },
-    {
-      "timestamp": "2025-12-06T15:39:55.321548",
+      "timestamp": "2025-12-06T16:35:53.334179",
       "severity": "INFO",
       "error_type": "GeneralError",
       "error_code": "GENERAL_ERROR",
@@ -94,10 +80,10 @@
       "context": {},
       "traceback": "",
       "component": "ENGINE_INIT",
-      "session_id": "45447501-2605-4598-825a-fcdb81985473"
+      "session_id": "1b8f94bb-1f87-48e9-a851-fdce625cf371"
     },
     {
-      "timestamp": "2025-12-06T15:39:55.321641",
+      "timestamp": "2025-12-06T16:35:53.334453",
       "severity": "INFO",
       "error_type": "GeneralError",
       "error_code": "GENERAL_ERROR",
@@ -105,10 +91,10 @@
       "context": {},
       "traceback": "",
       "component": "MAIN_WINDOW",
-      "session_id": "45447501-2605-4598-825a-fcdb81985473"
+      "session_id": "1b8f94bb-1f87-48e9-a851-fdce625cf371"
     },
     {
-      "timestamp": "2025-12-06T15:39:55.470371",
+      "timestamp": "2025-12-06T16:35:53.546591",
       "severity": "INFO",
       "error_type": "GeneralError",
       "error_code": "GENERAL_ERROR",
@@ -116,10 +102,10 @@
       "context": {},
       "traceback": "",
       "component": "MAIN",
-      "session_id": "45447501-2605-4598-825a-fcdb81985473"
+      "session_id": "1b8f94bb-1f87-48e9-a851-fdce625cf371"
     },
     {
-      "timestamp": "2025-12-06T15:40:22.005745",
+      "timestamp": "2025-12-06T17:02:33.824853",
       "severity": "INFO",
       "error_type": "GeneralError",
       "error_code": "GENERAL_ERROR",
@@ -127,14 +113,13 @@
       "context": {},
       "traceback": "",
       "component": "MAIN",
-      "session_id": "45447501-2605-4598-825a-fcdb81985473"
+      "session_id": "1b8f94bb-1f87-48e9-a851-fdce625cf371"
     }
   ],
   "summary": {
-    "total_errors": 11,
+    "total_errors": 10,
     "by_severity": {
-      "INFO": 10,
-      "WARNING": 1
+      "INFO": 10
     },
     "by_component": {
       "MAIN": 3,
@@ -142,14 +127,13 @@
       "RENDERER_INIT": 1,
       "UI_INIT": 1,
       "ENGINE_INIT": 3,
-      "MOCK_ENGINE_INIT": 1,
       "MAIN_WINDOW": 1
     },
     "by_error_code": {
-      "GENERAL_ERROR": 11
+      "GENERAL_ERROR": 10
     },
     "latest_error": {
-      "timestamp": "2025-12-06T15:40:22.005745",
+      "timestamp": "2025-12-06T17:02:33.824853",
       "severity": "INFO",
       "error_type": "GeneralError",
       "error_code": "GENERAL_ERROR",
@@ -157,7 +141,7 @@
       "context": {},
       "traceback": "",
       "component": "MAIN",
-      "session_id": "45447501-2605-4598-825a-fcdb81985473"
+      "session_id": "1b8f94bb-1f87-48e9-a851-fdce625cf371"
     }
   }
 }

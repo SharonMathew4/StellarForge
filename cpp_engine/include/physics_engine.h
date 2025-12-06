@@ -79,6 +79,7 @@ public:
     void get_positions(float* out_positions) const;
     void get_velocities(float* out_velocities) const;
     void get_masses(float* out_masses) const;
+    void get_types(int* out_types) const;
     
     size_t get_particle_count() const { return particles_.size(); }
     
@@ -90,6 +91,7 @@ public:
     
     // Simulation step
     void step(float dt);
+    void reset();
     
     // Physics parameters
     void set_gravitational_constant(float G) { G_ = G; }

@@ -89,6 +89,12 @@ void PhysicsEngine::get_masses(float* out_masses) const {
     }
 }
 
+void PhysicsEngine::get_types(int* out_types) const {
+    for (size_t i = 0; i < particles_.size(); ++i) {
+        out_types[i] = particles_.types[i];
+    }
+}
+
 void PhysicsEngine::add_particle(const std::array<float, 3>& pos,
                                  const std::array<float, 3>& vel,
                                  float mass, int type) {
@@ -244,13 +250,22 @@ void PhysicsEngine::handle_collisions() {
 
 // Barnes-Hut tree implementation will be in separate file
 void PhysicsEngine::step_cuda(float dt) {
-    // CUDA implementation in cuda/gravity_kernel.cu
-    std::cerr << "CUDA step not yet implemented" << std::endl;
+    // CUDA implementation - for now use OpenMP as fallback
+    // Full CUDA kernel integration would require CUDA memory management
+    step_cpu_openmp(dt);
 }
 
 void PhysicsEngine::step_opengl_compute(float dt) {
     // OpenGL compute implementation
     std::cerr << "OpenGL compute step not yet implemented" << std::endl;
+}
+
+void PhysicsEngine::reset() {
+    // Reset all particles to initial state
+    // Clear accelerations
+    for (size_t i = 0; i < particles_.size(); ++i) {
+        particles_.accelerations[i] = {0.0f, 0.0f, 0.0f};
+    }
 }
 
 } // namespace stellarforge

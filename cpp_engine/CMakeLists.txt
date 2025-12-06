@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Options for optional features
 option(USE_CUDA "Build with CUDA support" ON)
-option(USE_OPENGL_COMPUTE "Build with OpenGL compute shader support" ON)
+option(USE_OPENGL_COMPUTE "Build with OpenGL compute shader support" OFF)
 option(USE_OPENMP "Build with OpenMP multi-threading" ON)
 
 # Find required packages
@@ -77,6 +77,7 @@ add_library(stellarforge_core STATIC ${CORE_SOURCES})
 target_include_directories(stellarforge_core PUBLIC include)
 target_include_directories(stellarforge_core PRIVATE ${Python3_INCLUDE_DIRS})
 target_include_directories(stellarforge_core PRIVATE ${Python3_NumPy_INCLUDE_DIRS})
+set_target_properties(stellarforge_core PROPERTIES POSITION_INDEPENDENT_CODE ON)
 
 # Link OpenMP
 if(OpenMP_CXX_FOUND)

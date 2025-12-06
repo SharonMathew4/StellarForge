@@ -75,7 +75,7 @@ public:
     
     py::array_t<float> get_positions() {
         size_t count = engine_.get_particle_count();
-        auto result = py::array_t<float>({count, 3});
+        auto result = py::array_t<float>(std::vector<py::ssize_t>{static_cast<py::ssize_t>(count), 3});
         auto buf = result.request();
         float* ptr = static_cast<float*>(buf.ptr);
         engine_.get_positions(ptr);
@@ -84,7 +84,7 @@ public:
     
     py::array_t<float> get_velocities() {
         size_t count = engine_.get_particle_count();
-        auto result = py::array_t<float>({count, 3});
+        auto result = py::array_t<float>(std::vector<py::ssize_t>{static_cast<py::ssize_t>(count), 3});
         auto buf = result.request();
         float* ptr = static_cast<float*>(buf.ptr);
         engine_.get_velocities(ptr);
@@ -97,6 +97,15 @@ public:
         auto buf = result.request();
         float* ptr = static_cast<float*>(buf.ptr);
         engine_.get_masses(ptr);
+        return result;
+    }
+    
+    py::array_t<int> get_types() {
+        size_t count = engine_.get_particle_count();
+        auto result = py::array_t<int>(count);
+        auto buf = result.request();
+        int* ptr = static_cast<int*>(buf.ptr);
+        engine_.get_types(ptr);
         return result;
     }
     
@@ -127,6 +136,10 @@ public:
     
     void step(float dt) {
         engine_.step(dt);
+    }
+    
+    void reset() {
+        engine_.reset();
     }
     
     void set_gravitational_constant(float G) {
@@ -203,6 +216,8 @@ PYBIND11_MODULE(stellarforge_cpp_engine, m) {
              "Get particle velocities as (N, 3) NumPy array")
         .def("get_masses", &stellarforge::PhysicsEnginePython::get_masses,
              "Get particle masses as (N,) NumPy array")
+        .def("get_types", &stellarforge::PhysicsEnginePython::get_types,
+             "Get particle types as (N,) NumPy array")
         .def("get_particle_count", &stellarforge::PhysicsEnginePython::get_particle_count,
              "Get the number of particles")
         .def("add_particle", &stellarforge::PhysicsEnginePython::add_particle,
@@ -211,6 +226,8 @@ PYBIND11_MODULE(stellarforge_cpp_engine, m) {
              "Remove a particle by index")
         .def("step", &stellarforge::PhysicsEnginePython::step,
              "Advance simulation by dt")
+        .def("reset", &stellarforge::PhysicsEnginePython::reset,
+             "Reset the simulation")
         .def("set_gravitational_constant", &stellarforge::PhysicsEnginePython::set_gravitational_constant,
              "Set gravitational constant")
         .def("set_softening_length", &stellarforge::PhysicsEnginePython::set_softening_length,

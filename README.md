@@ -59,7 +59,7 @@ StellarForge/
 
 1. **Clone the repository:**
    ```powershell
-   git clone <repository-url>
+   git clone https://github.com/SharonMathew4/StellarForge
    cd StellarForge
    ```
 
