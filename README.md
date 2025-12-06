@@ -5,10 +5,10 @@ build command:<br>
 mkdir out && cd out && cmake .. && make -j12 && cd - && ./Project/ParticleSim/ParticleSim
 ```
 
-mouse control:<br>
+-mouse control:<br>
 * Left click: attract particles<br>
 * Rigth click: repel particles<br>
 * Middle click: move camera<br>
 * Scroll: zoom in/out<br>
-keyboard control:<br>
+-keyboard control:<br>
 * K: set all particle velocity to 0
