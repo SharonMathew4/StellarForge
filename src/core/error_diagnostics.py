@@ -297,7 +297,8 @@ class ErrorContextManager:
     
     def __exit__(self, exc_type, exc_val, exc_tb):
         """Exit context with error handling."""
-        duration = (datetime.now() - self.start_time).total_seconds()
+        now = datetime.now()
+        duration = (now - self.start_time).total_seconds() if self.start_time else 0.0
         
         if exc_type is None:
             self.error_logger.log_error(

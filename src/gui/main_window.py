@@ -24,6 +24,14 @@ from vis import UniverseRenderer
 from engine_bridge import MockEngine
 from proc_gen import UniverseGenerator
 
+# Try to import C++ engine, fallback to MockEngine
+try:
+    from engine_bridge import CppEngine
+    CPP_ENGINE_AVAILABLE = True
+except ImportError:
+    CPP_ENGINE_AVAILABLE = False
+    CppEngine = None
+
 import numpy as np
 import time
 
@@ -34,7 +42,7 @@ class MainWindow(QMainWindow):
     Integrates PyQt6 UI with VisPy 3D rendering.
     """
     
-    def __init__(self):
+    def __init__(self, use_cpp_engine=False, backend='openmp'):
         super().__init__()
         
         self.error_logger = get_error_logger()
@@ -42,7 +50,37 @@ class MainWindow(QMainWindow):
         try:
             # Initialize components
             self.app_state = AppState()
-            self.engine = MockEngine()
+            
+            # Initialize physics engine
+            if use_cpp_engine and CPP_ENGINE_AVAILABLE:
+                try:
+                    self.engine = CppEngine(backend=backend)
+                    self.error_logger.log_error(
+                        f"Using C++ physics engine with backend: {backend}",
+                        component="MAIN_WINDOW_INIT",
+                        severity=ErrorSeverity.INFO
+                    )
+                except Exception as e:
+                    self.error_logger.log_exception(
+                        e,
+                        component="CPP_ENGINE_INIT",
+                        severity=ErrorSeverity.WARNING
+                    )
+                    self.error_logger.log_error(
+                        "Falling back to MockEngine",
+                        component="MAIN_WINDOW_INIT",
+                        severity=ErrorSeverity.WARNING
+                    )
+                    self.engine = MockEngine()
+            else:
+                if use_cpp_engine and not CPP_ENGINE_AVAILABLE:
+                    self.error_logger.log_error(
+                        "C++ engine requested but not available. Using MockEngine.",
+                        component="MAIN_WINDOW_INIT",
+                        severity=ErrorSeverity.WARNING
+                    )
+                self.engine = MockEngine()
+            
             self.scenario_manager = ScenarioManager()
             self.universe_generator = UniverseGenerator()
             
@@ -54,14 +92,20 @@ class MainWindow(QMainWindow):
             self.canvas = None
             
             # Performance tracking
-            self.last_frame_time = time.time()
+            self.last_frame_time = time.perf_counter()
             self.frame_times = []
             self.fps = 0.0
+            self.ui_update_stride = 4  # Update heavy UI labels every N frames
+            self.ui_update_counter = 0
             
             # Update timer
             self.update_timer = QTimer()
             self.update_timer.timeout.connect(self.update_simulation)
             self.update_timer.setInterval(16)  # ~60 FPS
+            try:
+                self.update_timer.setTimerType(Qt.TimerType.PreciseTimer)
+            except Exception:
+                pass
             
             self.init_ui()
             self.init_engine()
@@ -131,25 +175,6 @@ class MainWindow(QMainWindow):
                     cause=canvas_error
                 )
             
-            # Create timeline widget
-            try:
-                self.timeline_widget = TimelineWidget()
-                self.timeline_widget.play_pause_clicked.connect(self.on_play_pause)
-                self.timeline_widget.reset_clicked.connect(self.on_reset)
-                self.timeline_widget.speed_changed.connect(self.on_speed_changed)
-                central_layout.addWidget(self.timeline_widget)
-            except Exception as timeline_error:
-                self.error_logger.log_exception(
-                    timeline_error,
-                    component="UI_INIT",
-                    severity=ErrorSeverity.ERROR,
-                    context={'stage': 'timeline_widget_creation'}
-                )
-                raise UIError(
-                    f"Failed to create timeline widget: {str(timeline_error)}",
-                    cause=timeline_error
-                )
-            
             central_widget.setLayout(central_layout)
             self.setCentralWidget(central_widget)
             
@@ -160,13 +185,19 @@ class MainWindow(QMainWindow):
                 self.control_panel.spawn_object.connect(self.on_spawn_object)
                 self.control_panel.physics_toggle.connect(self.on_physics_toggle)
                 
-                dock = QDockWidget("⚙ Controls", self)
+                dock = QDockWidget("Controls", self)
                 dock.setObjectName("ControlPanelDock")
                 dock.setWidget(self.control_panel)
                 dock.setFeatures(QDockWidget.DockWidgetFeature.DockWidgetMovable |
                                 QDockWidget.DockWidgetFeature.DockWidgetFloatable)
                 dock.setMinimumWidth(280)
                 self.addDockWidget(Qt.DockWidgetArea.RightDockWidgetArea, dock)
+
+                # Connect timeline signals from the control panel
+                self.timeline_widget = self.control_panel.timeline_widget
+                self.timeline_widget.play_pause_clicked.connect(self.on_play_pause)
+                self.timeline_widget.reset_clicked.connect(self.on_reset)
+                self.timeline_widget.speed_changed.connect(self.on_speed_changed)
             except Exception as control_error:
                 self.error_logger.log_exception(
                     control_error,
@@ -178,7 +209,7 @@ class MainWindow(QMainWindow):
             # Create info panel dock
             try:
                 self.info_panel = InfoPanel()
-                info_dock = QDockWidget("📊 Info", self)
+                info_dock = QDockWidget("Info", self)
                 info_dock.setObjectName("InfoPanelDock")
                 info_dock.setWidget(self.info_panel)
                 info_dock.setFeatures(QDockWidget.DockWidgetFeature.DockWidgetMovable |
@@ -473,7 +504,7 @@ class MainWindow(QMainWindow):
         """Update simulation step with error handling (called by timer)."""
         try:
             # Calculate FPS
-            current_time = time.time()
+            current_time = time.perf_counter()
             frame_time = (current_time - self.last_frame_time) * 1000  # ms
             self.last_frame_time = current_time
             
@@ -484,11 +515,12 @@ class MainWindow(QMainWindow):
             
             # Calculate and display FPS
             try:
-                if len(self.frame_times) > 0:
+                self.ui_update_counter = (self.ui_update_counter + 1) % self.ui_update_stride
+                if len(self.frame_times) > 0 and self.ui_update_counter == 0:
                     avg_frame_time = sum(self.frame_times) / len(self.frame_times)
                     self.fps = 1000.0 / avg_frame_time if avg_frame_time > 0 else 0
                     
-                    # Update info panel safely
+                    # Update info panel safely at reduced cadence
                     if self.info_panel:
                         self.info_panel.update_fps(self.fps)
                         self.info_panel.update_frame_time(avg_frame_time)
@@ -578,9 +610,9 @@ class MainWindow(QMainWindow):
             
             try:
                 # Update UI elements
-                if self.timeline_widget:
+                if self.timeline_widget and self.ui_update_counter == 0:
                     self.timeline_widget.update_time(self.app_state.current_time)
-                if self.info_panel:
+                if self.info_panel and self.ui_update_counter == 0:
                     self.info_panel.update_active_particles(self.app_state.get_particle_count())
             except Exception as ui_error:
                 self.error_logger.log_exception(

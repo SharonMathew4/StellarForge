@@ -44,4 +44,6 @@ Thumbs.db
 
 # Logs
 *.log
+logs/
 Cosmic simulation(Reference PDF) .pdf
+.github/copilot-instructions.md

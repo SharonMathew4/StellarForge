@@ -40,7 +40,7 @@ class StellarForgeSplash(QSplashScreen):
         title_font = QFont("Segoe UI", 36, QFont.Weight.Bold)
         painter.setFont(title_font)
         painter.setPen(QColor(139, 95, 212))  # Purple
-        painter.drawText(0, 0, 600, 200, Qt.AlignmentFlag.AlignCenter, "🌌 StellarForge")
+        painter.drawText(0, 0, 600, 200, Qt.AlignmentFlag.AlignCenter, "StellarForge")
         
         # Draw subtitle
         subtitle_font = QFont("Segoe UI", 14)
@@ -82,7 +82,7 @@ class StellarForgeSplash(QSplashScreen):
     
     def finish_loading(self):
         """Complete the loading animation."""
-        self.showMessage("✓ Ready!", QColor(40, 167, 69))
+        self.showMessage("Ready", QColor(40, 167, 69))
 
 
 def show_splash_screen():

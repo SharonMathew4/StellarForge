@@ -170,7 +170,7 @@ class UniverseRenderer:
                 return
             
             try:
-                # Validate positions array shape and type
+                # Validate positions array shape and type; keep float32 to avoid copies
                 positions = np.asarray(positions, dtype=np.float32)
                 if positions.ndim != 2 or positions.shape[1] != 3:
                     raise DataValidationError(
@@ -208,8 +208,10 @@ class UniverseRenderer:
             try:
                 # Handle colors
                 if colors is None:
-                    # Default white color
-                    colors = np.ones((len(positions), 3), dtype=np.float32)
+                    if self.colors is None or len(self.colors) != len(positions):
+                        colors = np.ones((len(positions), 3), dtype=np.float32)
+                    else:
+                        colors = self.colors
                 else:
                     colors = np.asarray(colors, dtype=np.float32)
                     
@@ -250,7 +252,10 @@ class UniverseRenderer:
             try:
                 # Handle sizes
                 if sizes is None:
-                    sizes = np.ones(len(positions)) * self.point_size
+                    if self.sizes is None or len(self.sizes) != len(positions):
+                        sizes = np.ones(len(positions), dtype=np.float32) * self.point_size
+                    else:
+                        sizes = self.sizes
                 else:
                     sizes = np.asarray(sizes, dtype=np.float32)
                     if len(sizes) != len(positions):
@@ -274,7 +279,7 @@ class UniverseRenderer:
                 self.sizes = np.ones(len(positions)) * self.point_size
             
             try:
-                # Update markers
+                # Update markers (always provide explicit buffers to avoid driver churn)
                 self.markers.set_data(
                     pos=self.positions,
                     face_color=self.colors,

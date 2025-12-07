@@ -8,6 +8,7 @@ from PyQt6.QtWidgets import (QWidget, QVBoxLayout, QHBoxLayout, QGroupBox,
                              QRadioButton)
 from PyQt6.QtCore import pyqtSignal, Qt
 from .styles import get_button_style
+from .timeline_widget import TimelineWidget
 
 from core import SimulationMode
 
@@ -48,23 +49,26 @@ class ControlPanel(QWidget):
         # Physics settings
         physics_group = self.create_physics_group()
         layout.addWidget(physics_group)
+
+        # Playback controls
+        self.timeline_widget = TimelineWidget()
+        layout.addWidget(self.timeline_widget)
         
-        # Stretch to push everything to top
         layout.addStretch()
         
         self.setLayout(layout)
-        self.setMaximumWidth(250)
+        self.setMaximumWidth(280)
     
     def create_mode_group(self) -> QGroupBox:
         """Create user mode selection group."""
-        group = QGroupBox("🎮 User Mode")
+        group = QGroupBox("User Mode")
         layout = QVBoxLayout()
         layout.setSpacing(8)
         
         # Radio buttons for mode selection
-        self.observation_radio = QRadioButton("👁 Observation Mode")
+        self.observation_radio = QRadioButton("Observation Mode")
         self.observation_radio.setToolTip("View and explore simulations without modification")
-        self.sandbox_radio = QRadioButton("🛠 Sandbox Mode")
+        self.sandbox_radio = QRadioButton("Sandbox Mode")
         self.sandbox_radio.setToolTip("Interactive mode - add and manipulate objects")
         
         self.observation_radio.setChecked(True)
@@ -76,7 +80,7 @@ class ControlPanel(QWidget):
         layout.addWidget(self.sandbox_radio)
         
         # Add description
-        desc = QLabel("🔷 Observation: View only\n🔸 Sandbox: Add/remove objects")
+        desc = QLabel("Observation: View only\nSandbox: Add/remove objects")
         desc.setProperty("class", "info")
         desc.setWordWrap(True)
         layout.addWidget(desc)
@@ -86,22 +90,22 @@ class ControlPanel(QWidget):
     
     def create_spawner_group(self) -> QGroupBox:
         """Create object spawner group."""
-        group = QGroupBox("✨ Object Spawner")
+        group = QGroupBox("Object Spawner")
         layout = QVBoxLayout()
         layout.setSpacing(6)
         
         # Spawn buttons with custom styling
-        self.spawn_star_btn = QPushButton("🌟 Add Star")
+        self.spawn_star_btn = QPushButton("Add Star")
         self.spawn_star_btn.setStyleSheet(get_button_style("spawn"))
         self.spawn_star_btn.setToolTip("Add a new star to the simulation")
         self.spawn_star_btn.setCursor(Qt.CursorShape.PointingHandCursor)
         
-        self.spawn_planet_btn = QPushButton("🌍 Add Planet")
+        self.spawn_planet_btn = QPushButton("Add Planet")
         self.spawn_planet_btn.setStyleSheet(get_button_style("spawn"))
         self.spawn_planet_btn.setToolTip("Add a new planet to the simulation")
         self.spawn_planet_btn.setCursor(Qt.CursorShape.PointingHandCursor)
         
-        self.spawn_blackhole_btn = QPushButton("⚫ Add Black Hole")
+        self.spawn_blackhole_btn = QPushButton("Add Black Hole")
         self.spawn_blackhole_btn.setStyleSheet(get_button_style("spawn"))
         self.spawn_blackhole_btn.setToolTip("Add a black hole with strong gravity")
         self.spawn_blackhole_btn.setCursor(Qt.CursorShape.PointingHandCursor)
@@ -120,20 +124,20 @@ class ControlPanel(QWidget):
     
     def create_physics_group(self) -> QGroupBox:
         """Create physics settings group."""
-        group = QGroupBox("⚛ Physics Settings")
+        group = QGroupBox("Physics Settings")
         layout = QVBoxLayout()
         layout.setSpacing(8)
         
         # Physics toggles with tooltips
-        self.gravity_lines_cb = QCheckBox("🔗 Show Gravity Lines")
+        self.gravity_lines_cb = QCheckBox("Show Gravity Lines")
         self.gravity_lines_cb.setToolTip("Visualize gravitational forces between objects")
         self.gravity_lines_cb.setCursor(Qt.CursorShape.PointingHandCursor)
         
-        self.collisions_cb = QCheckBox("💥 Enable Collisions")
+        self.collisions_cb = QCheckBox("Enable Collisions")
         self.collisions_cb.setToolTip("Detect and process object collisions")
         self.collisions_cb.setCursor(Qt.CursorShape.PointingHandCursor)
         
-        self.relativistic_cb = QCheckBox("⚡ Relativistic Mode")
+        self.relativistic_cb = QCheckBox("Relativistic Mode")
         self.relativistic_cb.setToolTip("Apply relativistic physics corrections (experimental)")
         self.relativistic_cb.setCursor(Qt.CursorShape.PointingHandCursor)
         
@@ -156,7 +160,7 @@ class ControlPanel(QWidget):
         layout.addWidget(self.relativistic_cb)
         
         # Add note about relativistic mode
-        note = QLabel("💡 Note: Relativistic mode is experimental")
+        note = QLabel("Note: Relativistic mode is experimental")
         note.setProperty("class", "info")
         note.setWordWrap(True)
         layout.addWidget(note)

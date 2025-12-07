@@ -3,45 +3,50 @@ Modern stylesheet definitions for StellarForge UI.
 Provides dark theme with hover effects, smooth transitions, and polished look.
 """
 
+from pathlib import Path
+
+_ASSETS_DIR = Path(__file__).resolve().parent
+_CHECKBOX_TICK_URL = (_ASSETS_DIR / "checkbox_tick.svg").as_posix()
+
 # Main application stylesheet
 MAIN_STYLESHEET = """
 /* Global Application Style */
 QMainWindow {
-    background-color: #1a1a2e;
+    background-color: #0f172a;
 }
 
 QWidget {
-    background-color: #16213e;
-    color: #e8e8e8;
+    background-color: #111827;
+    color: #e5e7eb;
     font-family: 'Segoe UI', Arial, sans-serif;
-    font-size: 10pt;
+    font-size: 9.5pt;
 }
 
 /* Menu Bar */
 QMenuBar {
-    background-color: #0f0f1e;
-    color: #e8e8e8;
-    border-bottom: 1px solid #2a2a4e;
-    padding: 4px;
+    background-color: #0b1220;
+    color: #e5e7eb;
+    border-bottom: 1px solid #1f2937;
+    padding: 3px;
 }
 
 QMenuBar::item {
-    padding: 6px 12px;
+    padding: 5px 10px;
     background-color: transparent;
     border-radius: 4px;
 }
 
 QMenuBar::item:selected {
-    background-color: #533483;
+    background-color: #303a6d;
 }
 
 QMenuBar::item:pressed {
-    background-color: #6a43a0;
+    background-color: #374799;
 }
 
 QMenu {
-    background-color: #1a1a2e;
-    border: 1px solid #533483;
+    background-color: #111827;
+    border: 1px solid #1f2937;
     border-radius: 6px;
     padding: 4px;
 }
@@ -53,13 +58,13 @@ QMenu::item {
 }
 
 QMenu::item:selected {
-    background-color: #533483;
+    background-color: #303a6d;
     color: #ffffff;
 }
 
 QMenu::separator {
     height: 1px;
-    background-color: #2a2a4e;
+    background-color: #1f2937;
     margin: 6px 10px;
 }
 
@@ -102,8 +107,8 @@ QGroupBox {
     background-color: #1a1a2e;
     border: 2px solid #2a2a4e;
     border-radius: 8px;
-    margin-top: 12px;
-    padding-top: 18px;
+    margin-top: 10px;
+    padding-top: 14px;
     font-weight: bold;
     color: #b8b8d0;
 }
@@ -111,7 +116,7 @@ QGroupBox {
 QGroupBox::title {
     subcontrol-origin: margin;
     subcontrol-position: top left;
-    padding: 4px 10px;
+    padding: 3px 9px;
     background-color: #533483;
     color: #ffffff;
     border-radius: 4px;
@@ -124,10 +129,10 @@ QPushButton {
     color: #ffffff;
     border: none;
     border-radius: 6px;
-    padding: 10px 16px;
+    padding: 8px 14px;
     font-weight: bold;
     font-size: 10pt;
-    min-height: 24px;
+    min-height: 22px;
 }
 
 QPushButton:hover {
@@ -183,14 +188,14 @@ QPushButton#spawnButton:hover {
 /* Radio Button */
 QRadioButton {
     color: #e8e8e8;
-    spacing: 8px;
-    padding: 6px;
+    spacing: 6px;
+    padding: 4px;
 }
 
 QRadioButton::indicator {
-    width: 18px;
-    height: 18px;
-    border-radius: 9px;
+    width: 16px;
+    height: 16px;
+    border-radius: 8px;
     border: 2px solid #533483;
     background-color: #1a1a2e;
 }
@@ -213,27 +218,38 @@ QRadioButton:hover {
 /* Check Box */
 QCheckBox {
     color: #e8e8e8;
-    spacing: 8px;
-    padding: 6px;
+    spacing: 6px;
+    padding: 4px;
 }
 
 QCheckBox::indicator {
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
     border-radius: 4px;
     border: 2px solid #533483;
     background-color: #1a1a2e;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 QCheckBox::indicator:checked {
-    background-color: #6a43a0;
+    background-color: #111827;
     border: 2px solid #8b5fd4;
-    image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQiIGhlaWdodD0iMTQiIHZpZXdCb3g9IjAgMCAxNCAxNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTExLjY2NjcgMy41TDUuMjUwMDQgOS45MTY2N0wyLjMzMzM3IDciIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPgo=);
+    background-position: center;
+    background-repeat: no-repeat;
+    image: url("CHECKBOX_TICK_URL");
 }
 
 QCheckBox::indicator:hover {
     border: 2px solid #8b5fd4;
     background-color: #2a2a4e;
+}
+
+/* Keep tick visible while hovered and checked */
+QCheckBox::indicator:checked:hover {
+    background-color: #1a2133;
+    border: 2px solid #9aa8ff;
+    image: url("CHECKBOX_TICK_URL");
 }
 
 QCheckBox:hover {
@@ -428,6 +444,9 @@ QTabBar::tab:hover:!selected {
     background-color: #3a3a5e;
 }
 """
+
+# Inject absolute asset paths for resources referenced in the stylesheet
+MAIN_STYLESHEET = MAIN_STYLESHEET.replace("CHECKBOX_TICK_URL", _CHECKBOX_TICK_URL)
 
 # Timeline widget specific styles
 TIMELINE_STYLESHEET = """

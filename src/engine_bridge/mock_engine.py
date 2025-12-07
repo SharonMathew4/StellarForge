@@ -91,6 +91,7 @@ class MockEngine(SimulationEngine):
                             f"Position generation failed: expected {particle_count}, got {len(self.positions) if self.positions is not None else 0}",
                             context={'distribution': distribution, 'particle_count': particle_count}
                         )
+                    self.positions = self.positions.astype(np.float32, copy=False)
                 except Exception as pos_error:
                     self.error_logger.log_exception(
                         pos_error,
@@ -106,6 +107,7 @@ class MockEngine(SimulationEngine):
                 # Generate velocities (orbital-ish motion around origin)
                 try:
                     self.velocities = self._generate_velocities(self.positions)
+                    self.velocities = self.velocities.astype(np.float32, copy=False)
                     if self.velocities is None or len(self.velocities) != particle_count:
                         raise EngineInitializationError(
                             "Velocity generation produced invalid result"
@@ -124,7 +126,7 @@ class MockEngine(SimulationEngine):
                 
                 # Generate masses (log-normal distribution for realistic variety)
                 try:
-                    self.masses = np.random.lognormal(0, 1.5, particle_count)
+                    self.masses = np.random.lognormal(0, 1.5, particle_count).astype(np.float32, copy=False)
                     if len(self.masses) != particle_count:
                         raise EngineInitializationError("Mass generation size mismatch")
                 except Exception as mass_error:
@@ -142,7 +144,7 @@ class MockEngine(SimulationEngine):
                 # Assign types and colors
                 try:
                     self.types = self._assign_types(particle_count)
-                    self.colors = self._generate_colors(self.types)
+                    self.colors = self._generate_colors(self.types).astype(np.float32, copy=False)
                     if len(self.types) != particle_count or len(self.colors) != particle_count:
                         raise EngineInitializationError("Type/color generation size mismatch")
                 except Exception as type_error:

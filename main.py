@@ -60,6 +60,19 @@ def setup_error_handling(app: QApplication):
 
 def main():
     """Main application entry point with error handling."""
+    import argparse
+    
+    # Parse command line arguments
+    parser = argparse.ArgumentParser(description='StellarForge - Cosmic Simulation Application')
+    parser.add_argument('--engine', choices=['mock', 'cpp'], default='mock',
+                       help='Physics engine to use (default: mock)')
+    parser.add_argument('--backend', choices=['single', 'openmp', 'cuda', 'opengl'], 
+                       default='openmp',
+                       help='C++ engine backend (default: openmp)')
+    args = parser.parse_args()
+    
+    use_cpp = (args.engine == 'cpp')
+    
     try:
         # Create Qt application
         app = QApplication(sys.argv)
@@ -71,7 +84,7 @@ def main():
         setup_error_handling(app)
         error_logger = get_error_logger()
         error_logger.log_error(
-            "Application started",
+            f"Application started (engine: {args.engine}, backend: {args.backend})",
             component="MAIN",
             severity=ErrorSeverity.INFO
         )
@@ -92,7 +105,7 @@ def main():
                     app.processEvents()
                     
                     # Create main window (hidden initially)
-                    window = MainWindow()
+                    window = MainWindow(use_cpp_engine=use_cpp, backend=args.backend)
                     
                     splash.showMessage("Initializing simulation engine...")
                     app.processEvents()

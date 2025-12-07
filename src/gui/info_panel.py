@@ -41,10 +41,11 @@ class InfoPanel(QWidget):
         
         self.setLayout(layout)
         self.setMaximumWidth(280)
+        self._fps_band = None
     
     def create_performance_group(self) -> QGroupBox:
         """Create performance metrics group."""
-        group = QGroupBox("📊 Performance")
+        group = QGroupBox("Performance")
         layout = QGridLayout()
         layout.setSpacing(8)
         
@@ -80,7 +81,7 @@ class InfoPanel(QWidget):
     
     def create_stats_group(self) -> QGroupBox:
         """Create simulation statistics group."""
-        group = QGroupBox("📈 Statistics")
+        group = QGroupBox("Statistics")
         layout = QGridLayout()
         layout.setSpacing(8)
         
@@ -116,7 +117,7 @@ class InfoPanel(QWidget):
     
     def create_camera_group(self) -> QGroupBox:
         """Create camera information group."""
-        group = QGroupBox("🎥 Camera")
+        group = QGroupBox("Camera")
         layout = QGridLayout()
         layout.setSpacing(8)
         
@@ -150,13 +151,19 @@ class InfoPanel(QWidget):
         
         # Color code based on performance
         if fps >= 55:
+            band = "high"
             color = "#28a745"  # Green
         elif fps >= 30:
+            band = "medium"
             color = "#ffc107"  # Yellow
         else:
+            band = "low"
             color = "#dc3545"  # Red
-        
-        self.fps_value.setStyleSheet(f"color: {color}; font-weight: bold;")
+
+        # Only update stylesheet when band changes to avoid per-frame CSS churn
+        if band != self._fps_band:
+            self.fps_value.setStyleSheet(f"color: {color}; font-weight: bold;")
+            self._fps_band = band
     
     def update_frame_time(self, ms: float):
         """Update frame time display."""

@@ -1,0 +1,49 @@
+// Gravity computation using compute shaders
+#version 430 core
+
+layout(local_size_x = 256) in;
+
+// Particle data
+layout(std430, binding = 0) buffer PositionBuffer {
+    vec4 positions[];  // xyz + padding
+};
+
+layout(std430, binding = 1) buffer VelocityBuffer {
+    vec4 velocities[];  // xyz + padding
+};
+
+layout(std430, binding = 2) buffer MassBuffer {
+    float masses[];
+};
+
+layout(std430, binding = 3) buffer AccelerationBuffer {
+    vec4 accelerations[];  // xyz + padding
+};
+
+uniform uint particleCount;
+uniform float G;
+uniform float softening;
+
+void main() {
+    uint i = gl_GlobalInvocationID.x;
+    if (i >= particleCount) return;
+    
+    vec3 pos_i = positions[i].xyz;
+    vec3 acc = vec3(0.0);
+    
+    // Compute acceleration from all other particles
+    for (uint j = 0; j < particleCount; ++j) {
+        if (i == j) continue;
+        
+        vec3 pos_j = positions[j].xyz;
+        vec3 r = pos_j - pos_i;
+        float dist2 = dot(r, r) + softening * softening;
+        float dist = sqrt(dist2);
+        float dist3 = dist2 * dist;
+        
+        float factor = G * masses[j] / dist3;
+        acc += factor * r;
+    }
+    
+    accelerations[i] = vec4(acc, 0.0);
+}
