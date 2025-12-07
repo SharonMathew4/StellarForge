@@ -241,7 +241,7 @@ void PhysicsEngine::handle_collisions() {
     }
     
     // Remove marked particles (in reverse order to maintain indices)
-    for (int i = particles_.size() - 1; i >= 0; --i) {
+    for (size_t i = particles_.size(); i-- > 0;) {
         if (removed[i]) {
             remove_particle(i);
         }
