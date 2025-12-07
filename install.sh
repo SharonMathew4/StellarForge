@@ -95,7 +95,7 @@ packages=(
     "noise>=1.2.2"
     "mesa>=2.1.0"
     "h5py>=3.10.0"
-    "pyopengl>=3.1.0"
+    "pyopengl>=3.1.6"
     "pillow>=10.0.0"
 )
 

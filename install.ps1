@@ -177,6 +177,10 @@ Write-Host ""
 Write-Host "  Or use the quick start script:" -ForegroundColor Gray
 Write-Host "     python run.py --demo" -ForegroundColor White
 Write-Host ""
+Write-Host "For CUDA/GPU backend:" -ForegroundColor Gray
+Write-Host "  - Install NVIDIA CUDA Toolkit 11.8" -ForegroundColor White
+Write-Host "  - Build the C++ engine (see docs/QUICKSTART.md)" -ForegroundColor White
+Write-Host "" 
 Write-Host "For more information, see:" -ForegroundColor Gray
 Write-Host "  - README.md (full documentation)" -ForegroundColor White
 Write-Host "  - QUICKSTART.md (quick start guide)" -ForegroundColor White

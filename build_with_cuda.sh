@@ -8,13 +8,17 @@ echo "========================================="
 echo "Building StellarForge with CUDA Support"
 echo "========================================="
 
-# Add CUDA to PATH
-export PATH=/usr/local/cuda-12.3/bin:$PATH
-export LD_LIBRARY_PATH=/usr/local/cuda-12.3/lib64:$LD_LIBRARY_PATH
+# Resolve CUDA location (override with CUDA_HOME if needed)
+CUDA_HOME=${CUDA_HOME:-/usr/local/cuda}
+CUDA_BIN="$CUDA_HOME/bin"
+CUDA_LIB64="$CUDA_HOME/lib64"
+
+export PATH="$CUDA_BIN:$PATH"
+export LD_LIBRARY_PATH="$CUDA_LIB64:$LD_LIBRARY_PATH"
 
 # Verify CUDA
-echo "Verifying CUDA installation..."
-nvcc --version || { echo "ERROR: CUDA not found!"; exit 1; }
+echo "Verifying CUDA installation (using: $CUDA_HOME)..."
+nvcc --version || { echo "ERROR: CUDA not found! Set CUDA_HOME or install the toolkit."; exit 1; }
 
 # Navigate to project
 cd "$(dirname "$0")"

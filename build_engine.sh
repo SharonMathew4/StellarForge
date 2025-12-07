@@ -18,7 +18,7 @@ echo -e "${YELLOW}Checking dependencies...${NC}"
 
 # Check for CMake
 if ! command -v cmake &> /dev/null; then
-    echo -e "${RED}ERROR: CMake not found. Please install CMake 3.18+${NC}"
+    echo -e "${RED}ERROR: CMake not found. Please install CMake 3.20+${NC}"
     exit 1
 fi
 
