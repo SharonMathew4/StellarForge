@@ -3,6 +3,11 @@ Modern stylesheet definitions for StellarForge UI.
 Provides dark theme with hover effects, smooth transitions, and polished look.
 """
 
+from pathlib import Path
+
+_ASSETS_DIR = Path(__file__).resolve().parent
+_CHECKBOX_TICK_URL = (_ASSETS_DIR / "checkbox_tick.svg").as_posix()
+
 # Main application stylesheet
 MAIN_STYLESHEET = """
 /* Global Application Style */
@@ -228,14 +233,23 @@ QCheckBox::indicator {
 }
 
 QCheckBox::indicator:checked {
-    background-color: #6a43a0;
+    background-color: #111827;
     border: 2px solid #8b5fd4;
-    image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQiIGhlaWdodD0iMTQiIHZpZXdCb3g9IjAgMCAxNCAxNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTExLjY2NjcgMy41TDUuMjUwMDQgOS45MTY2N0wyLjMzMzM3IDciIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPgo=);
+    background-position: center;
+    background-repeat: no-repeat;
+    image: url("CHECKBOX_TICK_URL");
 }
 
 QCheckBox::indicator:hover {
     border: 2px solid #8b5fd4;
     background-color: #2a2a4e;
+}
+
+/* Keep tick visible while hovered and checked */
+QCheckBox::indicator:checked:hover {
+    background-color: #1a2133;
+    border: 2px solid #9aa8ff;
+    image: url("CHECKBOX_TICK_URL");
 }
 
 QCheckBox:hover {
@@ -430,6 +444,9 @@ QTabBar::tab:hover:!selected {
     background-color: #3a3a5e;
 }
 """
+
+# Inject absolute asset paths for resources referenced in the stylesheet
+MAIN_STYLESHEET = MAIN_STYLESHEET.replace("CHECKBOX_TICK_URL", _CHECKBOX_TICK_URL)
 
 # Timeline widget specific styles
 TIMELINE_STYLESHEET = """

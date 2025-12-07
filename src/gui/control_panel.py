@@ -8,6 +8,7 @@ from PyQt6.QtWidgets import (QWidget, QVBoxLayout, QHBoxLayout, QGroupBox,
                              QRadioButton)
 from PyQt6.QtCore import pyqtSignal, Qt
 from .styles import get_button_style
+from .timeline_widget import TimelineWidget
 
 from core import SimulationMode
 
@@ -48,12 +49,15 @@ class ControlPanel(QWidget):
         # Physics settings
         physics_group = self.create_physics_group()
         layout.addWidget(physics_group)
+
+        # Playback controls
+        self.timeline_widget = TimelineWidget()
+        layout.addWidget(self.timeline_widget)
         
-        # Stretch to push everything to top
         layout.addStretch()
         
         self.setLayout(layout)
-        self.setMaximumWidth(250)
+        self.setMaximumWidth(280)
     
     def create_mode_group(self) -> QGroupBox:
         """Create user mode selection group."""

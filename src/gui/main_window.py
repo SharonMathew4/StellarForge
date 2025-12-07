@@ -175,25 +175,6 @@ class MainWindow(QMainWindow):
                     cause=canvas_error
                 )
             
-            # Create timeline widget
-            try:
-                self.timeline_widget = TimelineWidget()
-                self.timeline_widget.play_pause_clicked.connect(self.on_play_pause)
-                self.timeline_widget.reset_clicked.connect(self.on_reset)
-                self.timeline_widget.speed_changed.connect(self.on_speed_changed)
-                central_layout.addWidget(self.timeline_widget)
-            except Exception as timeline_error:
-                self.error_logger.log_exception(
-                    timeline_error,
-                    component="UI_INIT",
-                    severity=ErrorSeverity.ERROR,
-                    context={'stage': 'timeline_widget_creation'}
-                )
-                raise UIError(
-                    f"Failed to create timeline widget: {str(timeline_error)}",
-                    cause=timeline_error
-                )
-            
             central_widget.setLayout(central_layout)
             self.setCentralWidget(central_widget)
             
@@ -211,6 +192,12 @@ class MainWindow(QMainWindow):
                                 QDockWidget.DockWidgetFeature.DockWidgetFloatable)
                 dock.setMinimumWidth(280)
                 self.addDockWidget(Qt.DockWidgetArea.RightDockWidgetArea, dock)
+
+                # Connect timeline signals from the control panel
+                self.timeline_widget = self.control_panel.timeline_widget
+                self.timeline_widget.play_pause_clicked.connect(self.on_play_pause)
+                self.timeline_widget.reset_clicked.connect(self.on_reset)
+                self.timeline_widget.speed_changed.connect(self.on_speed_changed)
             except Exception as control_error:
                 self.error_logger.log_exception(
                     control_error,
