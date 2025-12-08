@@ -10,10 +10,10 @@ from PyQt6.QtWidgets import (
     QPushButton,
     QSlider,
     QLabel,
+    QFrame
 )
 from PyQt6.QtCore import pyqtSignal, Qt
-from .styles import get_button_style, TIMELINE_STYLESHEET
-
+from .styles import get_button_style
 
 class TimelineWidget(QWidget):
     """Playback controls and basic stats."""
@@ -41,15 +41,17 @@ class TimelineWidget(QWidget):
     def init_ui(self):
         """Initialize the timeline UI (compact for side panel)."""
         self.setObjectName("timeline")
-        self.setStyleSheet(TIMELINE_STYLESHEET)
-
+        
+        # Main layout
         root = QVBoxLayout()
-        root.setContentsMargins(8, 8, 8, 8)
-        root.setSpacing(10)
+        root.setContentsMargins(0, 8, 0, 8)
+        root.setSpacing(12)
 
-        # Row: play/pause + reset
-        buttons_row = QHBoxLayout()
-        buttons_row.setSpacing(8)
+        # 1. Playback Controls Row
+        controls_group = QWidget()
+        controls_layout = QHBoxLayout(controls_group)
+        controls_layout.setContentsMargins(0,0,0,0)
+        controls_layout.setSpacing(8)
 
         self.play_pause_btn = QPushButton("Play")
         self.play_pause_btn.setFixedHeight(32)
@@ -57,7 +59,6 @@ class TimelineWidget(QWidget):
         self.play_pause_btn.setToolTip("Start/pause simulation (Space)")
         self.play_pause_btn.setCursor(Qt.CursorShape.PointingHandCursor)
         self.play_pause_btn.clicked.connect(self.on_play_pause)
-        buttons_row.addWidget(self.play_pause_btn)
 
         self.reset_btn = QPushButton("Reset")
         self.reset_btn.setFixedHeight(32)
@@ -65,31 +66,19 @@ class TimelineWidget(QWidget):
         self.reset_btn.setToolTip("Reset simulation (Ctrl+R)")
         self.reset_btn.setCursor(Qt.CursorShape.PointingHandCursor)
         self.reset_btn.clicked.connect(self.on_reset)
-        buttons_row.addWidget(self.reset_btn)
 
-        root.addLayout(buttons_row)
+        controls_layout.addWidget(self.play_pause_btn, 2)
+        controls_layout.addWidget(self.reset_btn, 1)
+        root.addWidget(controls_group)
 
-        # Row: time display
-        time_row = QHBoxLayout()
-        time_row.setSpacing(6)
-        time_label = QLabel("Time:")
-        time_label.setProperty("class", "info")
-        self.time_display = QLabel("0.00 s")
-        self.time_display.setProperty("class", "bold")
-        time_row.addWidget(time_label)
-        time_row.addWidget(self.time_display, 1)
-        root.addLayout(time_row)
-
-        # Row: speed slider + value
-        speed_row = QVBoxLayout()
-        speed_label_row = QHBoxLayout()
-        speed_label = QLabel("Speed:")
+        # 2. Speed Slider
+        speed_layout = QHBoxLayout()
+        speed_label = QLabel("Speed")
         speed_label.setProperty("class", "info")
+        
         self.speed_display = QLabel("1.0x")
-        self.speed_display.setProperty("class", "bold")
-        speed_label_row.addWidget(speed_label)
-        speed_label_row.addStretch()
-        speed_label_row.addWidget(self.speed_display)
+        self.speed_display.setStyleSheet("font-family: 'Consolas', monospace; font-weight: bold;")
+        self.speed_display.setAlignment(Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter)
 
         self.speed_slider = QSlider(Qt.Orientation.Horizontal)
         self.speed_slider.setMinimum(1)   # 0.1x
@@ -99,22 +88,49 @@ class TimelineWidget(QWidget):
         self.speed_slider.setCursor(Qt.CursorShape.PointingHandCursor)
         self.speed_slider.valueChanged.connect(self.on_speed_changed)
 
-        speed_row.addLayout(speed_label_row)
-        speed_row.addWidget(self.speed_slider)
+        root.addLayout(speed_layout)
+        
+        speed_row = QHBoxLayout()
+        speed_row.addWidget(speed_label)
+        speed_row.addStretch()
+        speed_row.addWidget(self.speed_display)
         root.addLayout(speed_row)
+        root.addWidget(self.speed_slider)
 
-        # Row: particle count
-        particles_row = QHBoxLayout()
-        particles_row.setSpacing(6)
-        particles_label = QLabel("Particles:")
-        particles_label.setProperty("class", "info")
+        # Separator
+        line = QFrame()
+        line.setFrameShape(QFrame.Shape.HLine)
+        line.setFrameShadow(QFrame.Shadow.Sunken)
+        line.setStyleSheet("background-color: transparent; border-top: 1px solid #323a45;")
+        root.addWidget(line)
+
+        # 3. Metrics Grid (Time / Particles)
+        metrics_layout = QVBoxLayout()
+        metrics_layout.setSpacing(4)
+        
+        # Time Row
+        time_row = QHBoxLayout()
+        time_lbl = QLabel("Time Evolved:")
+        time_lbl.setProperty("class", "info")
+        self.time_display = QLabel("0.00 s")
+        self.time_display.setStyleSheet("font-family: 'Consolas', monospace; color: #f0f4f8;")
+        time_row.addWidget(time_lbl)
+        time_row.addStretch()
+        time_row.addWidget(self.time_display)
+        metrics_layout.addLayout(time_row)
+
+        # Particles Row
+        part_row = QHBoxLayout()
+        part_lbl = QLabel("Active Particles:")
+        part_lbl.setProperty("class", "info")
         self.particle_count_display = QLabel("0")
-        self.particle_count_display.setProperty("class", "bold")
-        particles_row.addWidget(particles_label)
-        particles_row.addStretch()
-        particles_row.addWidget(self.particle_count_display)
-        root.addLayout(particles_row)
+        self.particle_count_display.setStyleSheet("font-family: 'Consolas', monospace; color: #4c6ef5;")
+        part_row.addWidget(part_lbl)
+        part_row.addStretch()
+        part_row.addWidget(self.particle_count_display)
+        metrics_layout.addLayout(part_row)
 
+        root.addLayout(metrics_layout)
         root.addStretch()
         self.setLayout(root)
 

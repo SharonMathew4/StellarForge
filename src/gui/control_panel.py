@@ -4,14 +4,12 @@ Contains mode toggles, object spawner, and physics settings.
 """
 
 from PyQt6.QtWidgets import (QWidget, QVBoxLayout, QHBoxLayout, QGroupBox,
-                             QPushButton, QCheckBox, QLabel, QButtonGroup,
-                             QRadioButton)
+                             QPushButton, QCheckBox, QLabel, QRadioButton,
+                             QFrame)
 from PyQt6.QtCore import pyqtSignal, Qt
 from .styles import get_button_style
 from .timeline_widget import TimelineWidget
-
 from core import SimulationMode
-
 
 class ControlPanel(QWidget):
     """
@@ -34,8 +32,13 @@ class ControlPanel(QWidget):
         self.setObjectName("controlPanel")
         
         layout = QVBoxLayout()
-        layout.setSpacing(12)
-        layout.setContentsMargins(12, 12, 12, 12)
+        layout.setSpacing(16) # Increased spacing for cleaner look
+        layout.setContentsMargins(16, 16, 16, 16)
+        
+        # Header
+        header = QLabel("Simulation Controls")
+        header.setProperty("class", "section-header")
+        layout.addWidget(header)
         
         # Mode selection
         mode_group = self.create_mode_group()
@@ -44,45 +47,50 @@ class ControlPanel(QWidget):
         # Object spawner (sandbox mode only)
         self.spawner_group = self.create_spawner_group()
         layout.addWidget(self.spawner_group)
-        self.spawner_group.setEnabled(False)  # Disabled by default
+        self.spawner_group.setEnabled(False)
         
         # Physics settings
         physics_group = self.create_physics_group()
         layout.addWidget(physics_group)
 
+        # Spacer before timeline
+        layout.addStretch()
+
+        # Separator line
+        line = QFrame()
+        line.setFrameShape(QFrame.Shape.HLine)
+        line.setFrameShadow(QFrame.Shadow.Sunken)
+        layout.addWidget(line)
+
         # Playback controls
         self.timeline_widget = TimelineWidget()
         layout.addWidget(self.timeline_widget)
         
-        layout.addStretch()
-        
         self.setLayout(layout)
-        self.setMaximumWidth(280)
+        self.setMaximumWidth(320) # Slightly wider for better readability
     
     def create_mode_group(self) -> QGroupBox:
         """Create user mode selection group."""
         group = QGroupBox("User Mode")
         layout = QVBoxLayout()
         layout.setSpacing(8)
+        layout.setContentsMargins(12, 24, 12, 12)
         
-        # Radio buttons for mode selection
         self.observation_radio = QRadioButton("Observation Mode")
         self.observation_radio.setToolTip("View and explore simulations without modification")
+        
         self.sandbox_radio = QRadioButton("Sandbox Mode")
         self.sandbox_radio.setToolTip("Interactive mode - add and manipulate objects")
         
         self.observation_radio.setChecked(True)
-        
-        # Connect signals
         self.observation_radio.toggled.connect(self.on_mode_changed)
         
         layout.addWidget(self.observation_radio)
         layout.addWidget(self.sandbox_radio)
         
-        # Add description
-        desc = QLabel("Observation: View only\nSandbox: Add/remove objects")
+        # Helper text
+        desc = QLabel("Switch to Sandbox to interact.")
         desc.setProperty("class", "info")
-        desc.setWordWrap(True)
         layout.addWidget(desc)
         
         group.setLayout(layout)
@@ -92,31 +100,29 @@ class ControlPanel(QWidget):
         """Create object spawner group."""
         group = QGroupBox("Object Spawner")
         layout = QVBoxLayout()
-        layout.setSpacing(6)
+        layout.setSpacing(8)
+        layout.setContentsMargins(12, 24, 12, 12)
         
-        # Spawn buttons with custom styling
-        self.spawn_star_btn = QPushButton("Add Star")
-        self.spawn_star_btn.setStyleSheet(get_button_style("spawn"))
-        self.spawn_star_btn.setToolTip("Add a new star to the simulation")
-        self.spawn_star_btn.setCursor(Qt.CursorShape.PointingHandCursor)
+        # Grid for buttons
+        buttons_layout = QHBoxLayout()
+        buttons_layout.setSpacing(8)
         
-        self.spawn_planet_btn = QPushButton("Add Planet")
-        self.spawn_planet_btn.setStyleSheet(get_button_style("spawn"))
-        self.spawn_planet_btn.setToolTip("Add a new planet to the simulation")
-        self.spawn_planet_btn.setCursor(Qt.CursorShape.PointingHandCursor)
+        # Helper to create buttons
+        def create_btn(text, type_key):
+            btn = QPushButton(text)
+            btn.setStyleSheet(get_button_style("spawn"))
+            btn.setCursor(Qt.CursorShape.PointingHandCursor)
+            btn.clicked.connect(lambda: self.spawn_object.emit(type_key))
+            return btn
+
+        self.spawn_star_btn = create_btn("Star", 'star')
+        self.spawn_planet_btn = create_btn("Planet", 'planet')
         
-        self.spawn_blackhole_btn = QPushButton("Add Black Hole")
-        self.spawn_blackhole_btn.setStyleSheet(get_button_style("spawn"))
-        self.spawn_blackhole_btn.setToolTip("Add a black hole with strong gravity")
-        self.spawn_blackhole_btn.setCursor(Qt.CursorShape.PointingHandCursor)
+        buttons_layout.addWidget(self.spawn_star_btn)
+        buttons_layout.addWidget(self.spawn_planet_btn)
+        layout.addLayout(buttons_layout)
         
-        # Connect signals
-        self.spawn_star_btn.clicked.connect(lambda: self.spawn_object.emit('star'))
-        self.spawn_planet_btn.clicked.connect(lambda: self.spawn_object.emit('planet'))
-        self.spawn_blackhole_btn.clicked.connect(lambda: self.spawn_object.emit('black_hole'))
-        
-        layout.addWidget(self.spawn_star_btn)
-        layout.addWidget(self.spawn_planet_btn)
+        self.spawn_blackhole_btn = create_btn("Black Hole", 'black_hole')
         layout.addWidget(self.spawn_blackhole_btn)
         
         group.setLayout(layout)
@@ -127,21 +133,12 @@ class ControlPanel(QWidget):
         group = QGroupBox("Physics Settings")
         layout = QVBoxLayout()
         layout.setSpacing(8)
+        layout.setContentsMargins(12, 24, 12, 12)
         
-        # Physics toggles with tooltips
         self.gravity_lines_cb = QCheckBox("Show Gravity Lines")
-        self.gravity_lines_cb.setToolTip("Visualize gravitational forces between objects")
-        self.gravity_lines_cb.setCursor(Qt.CursorShape.PointingHandCursor)
-        
         self.collisions_cb = QCheckBox("Enable Collisions")
-        self.collisions_cb.setToolTip("Detect and process object collisions")
-        self.collisions_cb.setCursor(Qt.CursorShape.PointingHandCursor)
-        
         self.relativistic_cb = QCheckBox("Relativistic Mode")
-        self.relativistic_cb.setToolTip("Apply relativistic physics corrections (experimental)")
-        self.relativistic_cb.setCursor(Qt.CursorShape.PointingHandCursor)
         
-        # Set default states
         self.collisions_cb.setChecked(True)
         
         # Connect signals
@@ -158,12 +155,6 @@ class ControlPanel(QWidget):
         layout.addWidget(self.gravity_lines_cb)
         layout.addWidget(self.collisions_cb)
         layout.addWidget(self.relativistic_cb)
-        
-        # Add note about relativistic mode
-        note = QLabel("Note: Relativistic mode is experimental")
-        note.setProperty("class", "info")
-        note.setWordWrap(True)
-        layout.addWidget(note)
         
         group.setLayout(layout)
         return group
@@ -185,11 +176,3 @@ class ControlPanel(QWidget):
             self.observation_radio.setChecked(True)
         else:
             self.sandbox_radio.setChecked(True)
-    
-    def get_physics_settings(self) -> dict:
-        """Get current physics settings."""
-        return {
-            'gravity_lines': self.gravity_lines_cb.isChecked(),
-            'collisions': self.collisions_cb.isChecked(),
-            'relativistic': self.relativistic_cb.isChecked(),
-        }

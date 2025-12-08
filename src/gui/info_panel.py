@@ -6,8 +6,7 @@ Shows FPS, performance metrics, and other real-time information.
 from PyQt6.QtWidgets import (QWidget, QVBoxLayout, QLabel, QGroupBox, 
                              QGridLayout, QFrame)
 from PyQt6.QtCore import pyqtSignal, Qt
-from PyQt6.QtGui import QFont
-
+from .theme import theme_manager
 
 class InfoPanel(QWidget):
     """
@@ -21,9 +20,16 @@ class InfoPanel(QWidget):
     
     def init_ui(self):
         """Initialize the info panel UI."""
+        self.setObjectName("infoPanel")
+        
         layout = QVBoxLayout()
-        layout.setSpacing(10)
-        layout.setContentsMargins(10, 10, 10, 10)
+        layout.setSpacing(16)
+        layout.setContentsMargins(16, 16, 16, 16)
+        
+        # Header
+        header = QLabel("Metric Telemetry")
+        header.setProperty("class", "section-header")
+        layout.addWidget(header)
         
         # Performance group
         perf_group = self.create_performance_group()
@@ -40,76 +46,64 @@ class InfoPanel(QWidget):
         layout.addStretch()
         
         self.setLayout(layout)
-        self.setMaximumWidth(280)
+        self.setMaximumWidth(320)
         self._fps_band = None
     
     def create_performance_group(self) -> QGroupBox:
         """Create performance metrics group."""
-        group = QGroupBox("Performance")
+        group = QGroupBox("System Performance")
         layout = QGridLayout()
         layout.setSpacing(8)
+        layout.setContentsMargins(12, 24, 12, 12)
         
-        # FPS display
-        fps_label = QLabel("FPS:")
-        fps_label.setProperty("class", "info")
-        self.fps_value = QLabel("0")
-        self.fps_value.setProperty("class", "bold")
-        self.fps_value.setToolTip("Frames per second")
-        layout.addWidget(fps_label, 0, 0)
-        layout.addWidget(self.fps_value, 0, 1)
-        
-        # Frame time
-        frame_label = QLabel("Frame Time:")
-        frame_label.setProperty("class", "info")
-        self.frame_value = QLabel("0 ms")
-        self.frame_value.setProperty("class", "bold")
-        self.frame_value.setToolTip("Time to render one frame")
-        layout.addWidget(frame_label, 1, 0)
-        layout.addWidget(self.frame_value, 1, 1)
-        
-        # Memory usage (placeholder)
-        mem_label = QLabel("Memory:")
-        mem_label.setProperty("class", "info")
-        self.mem_value = QLabel("N/A")
-        self.mem_value.setProperty("class", "bold")
-        self.mem_value.setToolTip("Memory usage")
-        layout.addWidget(mem_label, 2, 0)
-        layout.addWidget(self.mem_value, 2, 1)
+        # Helper to create metrics
+        def add_metric(row, label, tooltip, value_id):
+            lbl = QLabel(label)
+            lbl.setProperty("class", "info")
+            val = QLabel("0")
+            val.setProperty("class", "bold")
+            val.setToolTip(tooltip)
+            val.setStyleSheet("font-family: 'Consolas', monospace;")
+            layout.addWidget(lbl, row, 0)
+            layout.addWidget(val, row, 1)
+            return val
+
+        self.fps_value = add_metric(0, "FPS:", "Frames per second", "fps")
+        self.frame_value = add_metric(1, "Frame Time:", "Time to render one frame", "ft")
+        self.mem_value = add_metric(2, "Memory:", "Memory usage", "mem")
+        self.mem_value.setText("N/A")
         
         group.setLayout(layout)
         return group
     
     def create_stats_group(self) -> QGroupBox:
         """Create simulation statistics group."""
-        group = QGroupBox("Statistics")
+        group = QGroupBox("Physics Statistics")
         layout = QGridLayout()
         layout.setSpacing(8)
+        layout.setContentsMargins(12, 24, 12, 12)
         
-        # Total energy
-        energy_label = QLabel("Total Energy:")
-        energy_label.setProperty("class", "info")
-        self.energy_value = QLabel("N/A")
-        self.energy_value.setProperty("class", "bold")
-        self.energy_value.setToolTip("Total system energy")
-        layout.addWidget(energy_label, 0, 0)
-        layout.addWidget(self.energy_value, 0, 1)
+        def add_metric(row, label, tooltip):
+            lbl = QLabel(label)
+            lbl.setProperty("class", "info")
+            val = QLabel("N/A")
+            val.setProperty("class", "bold")
+            val.setToolTip(tooltip)
+            val.setStyleSheet("font-family: 'Consolas', monospace;")
+            layout.addWidget(lbl, row, 0)
+            layout.addWidget(val, row, 1)
+            return val
         
-        # Momentum
-        momentum_label = QLabel("Momentum:")
-        momentum_label.setProperty("class", "info")
-        self.momentum_value = QLabel("N/A")
-        self.momentum_value.setProperty("class", "bold")
-        self.momentum_value.setToolTip("System momentum")
-        layout.addWidget(momentum_label, 1, 0)
-        layout.addWidget(self.momentum_value, 1, 1)
+        self.energy_value = add_metric(0, "Total Energy:", "Total system energy")
+        self.momentum_value = add_metric(1, "Momentum:", "System momentum")
         
-        # Active particles
-        active_label = QLabel("Active:")
-        active_label.setProperty("class", "info")
+        # Active particles with number formatting
+        lbl = QLabel("Active Bodies:")
+        lbl.setProperty("class", "info")
         self.active_value = QLabel("0")
         self.active_value.setProperty("class", "bold")
-        self.active_value.setToolTip("Active particles")
-        layout.addWidget(active_label, 2, 0)
+        self.active_value.setStyleSheet(f"font-family: 'Consolas', monospace; color: {theme_manager.theme.accent_secondary};")
+        layout.addWidget(lbl, 2, 0)
         layout.addWidget(self.active_value, 2, 1)
         
         group.setLayout(layout)
@@ -117,28 +111,25 @@ class InfoPanel(QWidget):
     
     def create_camera_group(self) -> QGroupBox:
         """Create camera information group."""
-        group = QGroupBox("Camera")
+        group = QGroupBox("Camera Telemetry")
         layout = QGridLayout()
         layout.setSpacing(8)
+        layout.setContentsMargins(12, 24, 12, 12)
         
-        # Position
-        pos_label = QLabel("Position:")
-        pos_label.setProperty("class", "info")
-        self.pos_value = QLabel("(0, 0, 0)")
-        self.pos_value.setProperty("class", "bold")
-        self.pos_value.setToolTip("Camera position")
-        self.pos_value.setWordWrap(True)
-        layout.addWidget(pos_label, 0, 0)
-        layout.addWidget(self.pos_value, 0, 1)
+        def add_metric(row, label, tooltip):
+            lbl = QLabel(label)
+            lbl.setProperty("class", "info")
+            val = QLabel("(0.0, 0.0, 0.0)")
+            val.setProperty("class", "bold")
+            val.setToolTip(tooltip)
+            val.setStyleSheet("font-family: 'Consolas', monospace;")
+            layout.addWidget(lbl, row, 0)
+            layout.addWidget(val, row, 1)
+            return val
         
-        # Distance
-        dist_label = QLabel("Distance:")
-        dist_label.setProperty("class", "info")
-        self.dist_value = QLabel("0")
-        self.dist_value.setProperty("class", "bold")
-        self.dist_value.setToolTip("Distance from origin")
-        layout.addWidget(dist_label, 1, 0)
-        layout.addWidget(self.dist_value, 1, 1)
+        self.pos_value = add_metric(0, "Position:", "Camera position")
+        self.dist_value = add_metric(1, "Distance:", "Distance from origin")
+        self.dist_value.setText("0.0")
         
         group.setLayout(layout)
         return group
@@ -150,19 +141,20 @@ class InfoPanel(QWidget):
         self.fps_value.setText(f"{fps:.1f}")
         
         # Color code based on performance
+        t = theme_manager.theme
         if fps >= 55:
             band = "high"
-            color = "#28a745"  # Green
+            color = t.success
         elif fps >= 30:
             band = "medium"
-            color = "#ffc107"  # Yellow
+            color = t.warning
         else:
             band = "low"
-            color = "#dc3545"  # Red
+            color = t.error
 
         # Only update stylesheet when band changes to avoid per-frame CSS churn
         if band != self._fps_band:
-            self.fps_value.setStyleSheet(f"color: {color}; font-weight: bold;")
+            self.fps_value.setStyleSheet(f"color: {color}; font-family: 'Consolas', monospace; font-weight: bold;")
             self._fps_band = band
     
     def update_frame_time(self, ms: float):

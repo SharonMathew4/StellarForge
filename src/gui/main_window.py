@@ -135,9 +135,10 @@ class MainWindow(QMainWindow):
             self.setGeometry(100, 100, 1280, 720)
             self.setMinimumSize(QSize(1024, 600))
             
-            # Apply modern stylesheet
+            # Apply modern stylesheet from ThemeManager
             try:
-                self.setStyleSheet(MAIN_STYLESHEET)
+                from .theme import theme_manager
+                self.setStyleSheet(theme_manager.get_main_stylesheet())
             except Exception as style_error:
                 self.error_logger.log_exception(
                     style_error,
