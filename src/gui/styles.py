@@ -1,6 +1,5 @@
 """
-Modern stylesheet definitions for StellarForge UI.
-Delegates generation to the ThemeManager.
+Provides stylesheet interfaces and delegates to ThemeManager for dynamic generation.
 """
 
 from pathlib import Path
