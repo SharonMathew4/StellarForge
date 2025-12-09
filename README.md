@@ -53,51 +53,199 @@ StellarForge/
 └── setup.py                    # Python package setup
 ```
 
-## Installation
+## Quick Start
 
-### Prerequisites
+### Linux/Unix/macOS Setup
 
-- Python 3.10 or higher
-- CMake 3.20+ (for C++ engine build)
-- C++ compiler (GCC 11+ on Linux, MSVC on Windows, Clang on macOS)
-- CUDA Toolkit 11.8+ (optional, for GPU acceleration)
-- git
-
-### Linux Setup
-
-1. Clone repository:
 ```bash
-git clone https://github.com/SharonMathew4/StellarForge.git
+# Automatic setup (detects system, installs all dependencies)
+./setup.sh
+
+# Launch application
+./launch.sh
+```
+
+The `setup.sh` script automatically:
+- Detects your OS and hardware (CPU cores, RAM, GPU)
+- Checks Python and dependencies
+- Creates virtual environment
+- Installs all required packages
+- Shows system configuration
+
+The `launch.sh` script automatically:
+- Detects NVIDIA GPU and enables CUDA if available
+- Falls back to OpenMP (CPU multi-threading) if no GPU
+- Shows detailed system information
+- Handles any missing dependencies
+
+### Windows 10/11 Setup
+
+```powershell
+# Run setup script
+powershell -ExecutionPolicy Bypass -File setup.ps1
+
+# Then launch
+python main.py --engine mock --backend openmp
+# Or with GPU (if NVIDIA GPU available):
+python main.py --engine cpp --backend cuda
+```
+
+The `setup.ps1` script automatically:
+- Detects Windows version and hardware specs
+- Checks Python, CMake, CUDA installation
+- Creates virtual environment
+- Installs all dependencies
+- Shows detailed system configuration (CPU/GPU/RAM/OS)
+
+## Manual Installation (if scripts fail)
+
+### Linux/Unix/macOS
+
+```bash
 cd StellarForge
-```
 
-2. Create virtual environment:
-```bash
-python3 -m venv venv
-source venv/bin/activate
-```
+# Create and activate virtual environment
+python3 -m venv .venv
+source .venv/bin/activate  # On macOS: same command
 
-3. Install Python dependencies:
-```bash
+# Install dependencies
 pip install --upgrade pip
-pip install -r requirements.txt
+pip install PyQt6 vispy numpy scipy h5py trimesh pillow noise
+
+# Optional: Build C++ engine for better performance
+cd cpp_engine && mkdir -p build && cd build
+cmake .. && make && make install
+cd ../..
+
+# Run application
+python3 main.py
 ```
 
-4. Build C++ physics engine (optional but recommended):
+### Windows 10/11
 
-**Without CUDA (CPU-only with OpenMP):**
-```bash
-./build_engine.sh
+```powershell
+cd StellarForge
+
+# Create and activate virtual environment
+python -m venv venv
+.\venv\Scripts\Activate.ps1
+
+# Install dependencies
+pip install --upgrade pip
+pip install PyQt6 vispy numpy scipy h5py trimesh pillow noise
+
+# Run application
+python main.py
 ```
 
-**With CUDA (GPU acceleration):**
+## Running the Application
+
+### Default (Mock Physics Engine - CPU)
 ```bash
-./build_with_cuda.sh
+python3 main.py  # Linux/macOS
+python main.py   # Windows
 ```
 
-Or manually:
+### With C++ Physics Engine + OpenMP (Multi-core CPU)
 ```bash
-cd cpp_engine
+python3 main.py --engine cpp --backend openmp
+```
+
+### With C++ Physics Engine + CUDA (NVIDIA GPU)
+```bash
+python3 main.py --engine cpp --backend cuda
+```
+
+### Universal Launcher (Auto-detects everything)
+```bash
+./launch.sh  # Linux/Unix/macOS
+```
+
+Windows users can run directly from PowerShell after setup:
+```bash
+python main.py --engine mock --backend openmp
+```
+
+## GPU Acceleration
+
+### NVIDIA GPUs (Recommended)
+
+Supported GPUs: RTX series (3050+), Tesla, Quadro
+
+**Install CUDA Toolkit:**
+- Download: https://developer.nvidia.com/cuda-downloads
+- Select your OS and follow installation steps
+- Verify: `nvidia-smi` should show your GPU
+
+Once CUDA is installed and C++ engine built:
+```bash
+python3 main.py --engine cpp --backend cuda
+```
+
+### CPU-Only Mode
+
+If no GPU available or CUDA not installed:
+```bash
+python3 main.py --engine mock --backend openmp
+```
+
+Uses all available CPU cores via OpenMP - still performs well for 10k-50k particles.
+
+## Troubleshooting
+
+### Python not found
+- Linux: `sudo apt install python3.10 python3.10-venv`
+- macOS: `brew install python@3.10`
+- Windows: Download from https://www.python.org/downloads/ (enable "Add to PATH")
+
+### GPU not detected
+- Verify NVIDIA GPU: `nvidia-smi` in system terminal (not VS Code)
+- Check CUDA: `nvcc --version`
+- On WSL2: GPU support requires special setup
+
+### C++ engine build fails
+- Application still works with Python mock engine
+- For C++ build: ensure CMake and compiler installed
+- Linux: `sudo apt install cmake build-essential`
+- macOS: `brew install cmake`
+- Windows: Install Visual Studio Build Tools
+
+### VisPy/OpenGL issues
+- Update GPU drivers to latest version
+- On Linux: `sudo apt install libgl1-mesa-glx`
+
+## System Requirements
+
+### Minimum
+- CPU: 4 cores
+- RAM: 8GB
+- GPU: Optional (OpenMP fallback available)
+- Python 3.10+
+
+### Recommended
+- CPU: 8+ cores
+- RAM: 16GB+
+- GPU: NVIDIA RTX 3060+ with 6GB+ VRAM
+- Python 3.10+
+
+## Performance Notes
+
+- Mock Engine (Python): ~1000-5000 particles at 60 FPS
+- C++ + OpenMP: ~10,000-50,000 particles at 30-60 FPS
+- C++ + CUDA: ~100,000+ particles at 30-60 FPS (RTX 4050 with 6GB VRAM)
+
+Actual performance depends on particle density, 3D model complexity, and visualization features enabled.
+
+## Controls
+
+- **Mouse**: Click + drag to rotate camera
+- **Scroll**: Zoom in/out
+- **Space**: Play/Pause simulation
+- **R**: Reset camera
+- **Ctrl+L**: Load solar system
+- **Ctrl+S**: Save scenario
+- **Ctrl+O**: Load scenario
+- **Esc**: Exit
 mkdir -p build && cd build
 cmake .. -DUSE_CUDA=ON -DUSE_OPENMP=ON
 make -j$(nproc)

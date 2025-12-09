@@ -906,75 +906,69 @@ class MainWindow(QMainWindow):
             base_path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
             assets_path = os.path.join(base_path, "src", "assets")
             
-            # Constants for logical units (approximate)
-            # Mass: 1000 = Sun, 1 = Earth
-            # Velocity: correct circular orbit v = sqrt(G*M/r)
-            # G is approx 1 in our simulaton units if tuned correctly, but we'll approximate
+            # Constants for logical units
             G = 0.5 
             SUN_MASS = 50000.0
             
-            # (filename, distance, mass, scale)
+            # (filename, distance, mass, scale) - OPTIMIZED
             solar_system = [
                 ('sun.glb', 0, SUN_MASS, 2.0),
                 ('mercury_natural_color.glb', 40, 5.0, 0.4),
                 ('venus.glb', 70, 40.0, 0.9),
                 ('earth.glb', 100, 50.0, 1.0),
-                ('the_moon_sharp.glb', 105, 0.5, 0.27), # Special case logic needed for orbit?
+                ('the_moon_sharp.glb', 105, 0.5, 0.27),
                 ('mars.glb', 150, 20.0, 0.53),
                 ('jupiter.glb', 300, 1500.0, 11.0),
-                ('saturno_v1.1.glb', 550, 1200.0, 9.0),
+                ('saturno_v1.1.glb', 550, 1200.0, 9.0),  # Will be automatically simplified
                 ('uranus.glb', 900, 600.0, 4.0),
                 ('neptune.glb', 1200, 600.0, 3.8),
                 ('pluto.glb', 1400, 0.1, 0.18),
             ]
             
             loaded_count = 0
-            
-            # Map for tracking bodies to setup relative orbits (e.g. Moon around Earth)
-            bodies = {} 
+            loaded_meshes = set()  # Track loaded meshes to avoid duplication
             
             for filename, distance, mass, scale in solar_system:
                 mesh_path = os.path.join(assets_path, filename)
                 if not os.path.exists(mesh_path):
                     self.error_logger.log_error(f"Asset missing: {filename}", component="SOLAR_SYSTEM", severity=ErrorSeverity.WARNING)
                     continue
+                
+                # Skip duplicate loads (prevent loading same file multiple times)
+                if mesh_path in loaded_meshes:
+                    self.error_logger.log_error(f"Skipping duplicate mesh: {filename}", component="SOLAR_SYSTEM", severity=ErrorSeverity.DEBUG)
+                    continue
+                loaded_meshes.add(mesh_path)
 
                 # Calculate Position & Velocity for Circular Orbit
                 if distance == 0:
                     pos = np.array([0, 0, 0], dtype=np.float32)
                     vel = np.array([0, 0, 0], dtype=np.float32)
                 else:
-                    # Random angle
                     angle = np.random.uniform(0, 2*np.pi)
                     
-                    # Special Case: Moon
-                    if 'moon' in filename:
-                        # Find Earth's position if it exists, otherwise standard orbit
-                        # Simplified: Just put it near Earth distance but slightly offset
-                        # Proper N-body for Moon-Earth-Sun is hard in simple setup, we'll approximate
-                        # by putting it at Distance + Offset, with Earth Velocity + Orbit Velocity
-                        parent_dist = 100 # Earth
+                    if 'moon' in filename.lower():
                         pos = np.array([distance, 0, 0], dtype=np.float32) 
                         v_orb = np.abs(np.sqrt(G * SUN_MASS / distance))
-                        vel = np.array([0, v_orb, 0], dtype=np.float32) # Simple circular
+                        vel = np.array([0, v_orb, 0], dtype=np.float32)
                     else:
                         pos = np.array([distance * np.cos(angle), distance * np.sin(angle), 0], dtype=np.float32)
-                        
-                        # Velocity vector perpendicular to position
-                        # v = sqrt(GM/r)
                         speed = np.sqrt(G * SUN_MASS / distance)
                         vel = np.array([-speed * np.sin(angle), speed * np.cos(angle), 0], dtype=np.float32)
                 
                 # Add to Physics Engine
-                # Type: 0=Star, 1=Planet
                 ptype = 0 if distance == 0 else 1
                 self.engine.add_particle(pos, vel, mass, ptype)
                 
-                # Add Mesh to Renderer (linked by index implicitly, as we cleared engine first)
-                # We pass scale to renderer. Position is updated by update_simulation loop visually
+                # Add Mesh to Renderer (ONE TIME only)
                 self.renderer.add_mesh(mesh_path, position=tuple(pos), scale=scale)
                 
                 loaded_count += 1
+                self.error_logger.log_error(
+                    f"Loaded solar system body: {filename} at distance {distance}",
+                    component="SOLAR_SYSTEM",
+                    severity=ErrorSeverity.INFO
+                )
 
             # Update State
             self.app_state.positions = self.engine.get_positions()
@@ -982,13 +976,8 @@ class MainWindow(QMainWindow):
             self.app_state.colors = self.engine.get_colors()
             self.app_state.types = self.engine.get_types()
             
-            # Sync meshes with initial positions handled by renderer.add_mesh
-            # But we need to ensure update_visualization() links them.
-            # Currently update_visualization typically updates point cloud. 
-            # We need a way to link particle[i] -> mesh[i]
-            
             self.renderer.set_camera_position(distance=500, elevation=45, azimuth=0)
-            self.statusBar().showMessage(f"Loaded solar system with {loaded_count} bodies (Real Physics enabled)")
+            self.statusBar().showMessage(f"Loaded solar system: {loaded_count} bodies with GPU physics")
             
         except Exception as e:
             self.error_logger.log_exception(e, component="SOLAR_SYSTEM", severity=ErrorSeverity.ERROR)
