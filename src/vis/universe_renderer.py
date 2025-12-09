@@ -11,6 +11,7 @@ from typing import Optional
 from core.exceptions import RenderingError, DataValidationError
 from core.error_logger import get_error_logger, ErrorSeverity
 from .model_loader import ModelLoader
+from .textured_mesh import TexturedMesh
 
 
 class UniverseRenderer:
@@ -338,22 +339,25 @@ class UniverseRenderer:
                 self.error_logger.log_error("Mesh has 0 vertices", component="RENDERER_MESH", severity=ErrorSeverity.WARNING)
                 return
 
+            # Use custom TexturedMesh scene visual for proper texture support
             if texture is not None and uvs is not None:
-                # Use texture mapping
-                # Flip V coordinate for VBO
-                # uvs[:, 1] = 1.0 - uvs[:, 1]
-                mesh_visual = visuals.Mesh(vertices=vertices, faces=faces, 
-                                         texcoords=uvs, shading='smooth')
-                mesh_visual.texture_format = '2d'
-                # Ensure texture is contiguous and correct type
-                import numpy as np
-                if texture.dtype != np.float32:
-                     texture = texture.astype(np.float32) / 255.0
-                mesh_visual.texture = texture
+                mesh_visual = TexturedMesh(
+                    vertices=vertices,
+                    faces=faces,
+                    texture=texture,
+                    uvs=uvs,
+                    vertex_colors=colors,
+                    parent=self.view.scene
+                )
             else:
-                # Fallback to vertex colors
-                mesh_visual = visuals.Mesh(vertices=vertices, faces=faces, 
-                                         vertex_colors=colors, shading='smooth')
+                # Fallback to standard mesh without texture
+                mesh_visual = visuals.Mesh(
+                    vertices=vertices,
+                    faces=faces,
+                    vertex_colors=colors,
+                    shading='smooth',
+                    parent=self.view.scene
+                )
             
             # Create a transform for the mesh
             from vispy.visuals.transforms import STTransform

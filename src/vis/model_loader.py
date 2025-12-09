@@ -33,45 +33,28 @@ class ModelLoader:
             if isinstance(scene, trimesh.Scene):
                 if len(scene.geometry) == 0:
                     raise ValueError("Scene contains no geometry")
-                mesh = scene.dump(concatenate=True)
+                mesh = scene.to_geometry()  # Use to_geometry() instead of deprecated dump()
             else:
                 mesh = scene
 
-            # Simplify very large meshes (e.g., Saturn with rings has 202k vertices)
-            if simplify and len(mesh.vertices) > 50000:
-                target_count = 20000
-                self.logger.log_error(
-                    f"Simplifying mesh {file_path}: {len(mesh.vertices)} -> {target_count} vertices",
-                    component="MODEL_LOADER",
-                    severity=ErrorSeverity.INFO
-                )
-                mesh = mesh.simplify_mesh(target_count=target_count, aggressiveness=7.0)
-
-            vertices = np.array(mesh.vertices, dtype=np.float32)
-            faces = np.array(mesh.faces, dtype=np.int32)
-            
-            # Extract vertex colors
-            colors = None
-            if hasattr(mesh.visual, 'vertex_colors'):
-                colors = np.array(mesh.visual.vertex_colors, dtype=np.float32) / 255.0
-            
-            # Extract texture from material
+            # Extract texture and UVs BEFORE simplification (simplification loses visual data)
             texture = None
             uvs = None
             
             try:
-                # Try to get texture from material
+                # Try to get texture from PBR material
                 if hasattr(mesh, 'visual') and hasattr(mesh.visual, 'material'):
                     material = mesh.visual.material
                     
-                    # Check for image in material
-                    if hasattr(material, 'image') and material.image is not None:
+                    # PBRMaterial stores texture in baseColorTexture (already a PIL Image)
+                    if hasattr(material, 'baseColorTexture') and material.baseColorTexture is not None:
                         from PIL import Image
-                        img = material.image
+                        img = material.baseColorTexture
                         
-                        # Convert to numpy array
+                        # Convert PIL Image to numpy array
                         if isinstance(img, Image.Image):
                             texture = np.array(img, dtype=np.float32)
+                            # Normalize to [0, 1] range
                             if texture.max() > 1.0:
                                 texture = texture / 255.0
                     
@@ -84,6 +67,52 @@ class ModelLoader:
                     component="MODEL_LOADER",
                     severity=ErrorSeverity.DEBUG
                 )
+
+            # Simplify very large meshes (e.g., Saturn with rings has 202k vertices)
+            # NOTE: Simplification will invalidate UVs, so we skip texture for simplified meshes
+            if simplify and len(mesh.vertices) > 50000:
+                target_count = 20000
+                self.logger.log_error(
+                    f"Simplifying mesh {file_path}: {len(mesh.vertices)} -> {target_count} vertices (texture will be lost)",
+                    component="MODEL_LOADER",
+                    severity=ErrorSeverity.INFO
+                )
+                texture = None  # Clear texture since UVs will be invalid
+                uvs = None
+                
+                try:
+                    # Try fast quadric decimation (requires pyfqmr)
+                    import pyfqmr
+                    mesh_simplifier = pyfqmr.Simplify()
+                    mesh_simplifier.setMesh(mesh.vertices, mesh.faces)
+                    mesh_simplifier.simplify_mesh(target_count=target_count, aggressiveness=7, preserve_border=True)
+                    vertices_new, faces_new, normals_new = mesh_simplifier.getMesh()
+                    mesh = trimesh.Trimesh(vertices=vertices_new, faces=faces_new)
+                except (ImportError, Exception) as e:
+                    # Fallback: use trimesh's built-in simplification
+                    self.logger.log_error(
+                        f"Fast simplification failed ({str(e)}), using trimesh simplification",
+                        component="MODEL_LOADER",
+                        severity=ErrorSeverity.WARNING
+                    )
+                    # Use trimesh.simplify.simplify_quadratic which doesn't require external deps
+                    try:
+                        from trimesh.simplify import simplify_quadratic
+                        mesh = simplify_quadratic(mesh, face_count=target_count // 2)
+                    except Exception as fallback_error:
+                        self.logger.log_error(
+                            f"All simplification methods failed: {str(fallback_error)}",
+                            component="MODEL_LOADER",
+                            severity=ErrorSeverity.WARNING
+                        )
+
+            vertices = np.array(mesh.vertices, dtype=np.float32)
+            faces = np.array(mesh.faces, dtype=np.int32)
+            
+            # Extract vertex colors
+            colors = None
+            if hasattr(mesh.visual, 'vertex_colors'):
+                colors = np.array(mesh.visual.vertex_colors, dtype=np.float32) / 255.0
 
             self.logger.log_error(
                 f"Loaded mesh {file_path}: {len(vertices)} vertices, Texture: {texture is not None}",

@@ -1,32 +1,32 @@
 {
-  "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16",
-  "export_timestamp": "2025-12-09T11:01:11.798135",
+  "session_id": "9b2b4718-ace3-4d5a-9104-90f46e62956d",
+  "export_timestamp": "2025-12-09T11:57:37.433423",
   "total_errors": 44,
   "errors": [
     {
-      "timestamp": "2025-12-09T10:59:41.868307",
+      "timestamp": "2025-12-09T11:56:50.160125",
       "severity": "INFO",
       "error_type": "GeneralError",
       "error_code": "GENERAL_ERROR",
-      "message": "Application started (engine: cpp, backend: cuda)",
+      "message": "Application started (engine: cpp, backend: openmp)",
       "context": {},
       "traceback": "",
       "component": "MAIN",
-      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+      "session_id": "9b2b4718-ace3-4d5a-9104-90f46e62956d"
     },
     {
-      "timestamp": "2025-12-09T10:59:43.004411",
+      "timestamp": "2025-12-09T11:56:51.285255",
       "severity": "INFO",
       "error_type": "GeneralError",
       "error_code": "GENERAL_ERROR",
-      "message": "Using C++ physics engine with backend: cuda",
+      "message": "Using C++ physics engine with backend: openmp",
       "context": {},
       "traceback": "",
       "component": "MAIN_WINDOW_INIT",
-      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+      "session_id": "9b2b4718-ace3-4d5a-9104-90f46e62956d"
     },
     {
-      "timestamp": "2025-12-09T10:59:43.135155",
+      "timestamp": "2025-12-09T11:56:51.666802",
       "severity": "INFO",
       "error_type": "GeneralError",
       "error_code": "GENERAL_ERROR",
@@ -34,10 +34,10 @@
       "context": {},
       "traceback": "",
       "component": "RENDERER_INIT",
-      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+      "session_id": "9b2b4718-ace3-4d5a-9104-90f46e62956d"
     },
     {
-      "timestamp": "2025-12-09T10:59:43.242636",
+      "timestamp": "2025-12-09T11:56:51.773575",
       "severity": "INFO",
       "error_type": "GeneralError",
       "error_code": "GENERAL_ERROR",
@@ -45,10 +45,10 @@
       "context": {},
       "traceback": "",
       "component": "UI_INIT",
-      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+      "session_id": "9b2b4718-ace3-4d5a-9104-90f46e62956d"
     },
     {
-      "timestamp": "2025-12-09T10:59:43.242806",
+      "timestamp": "2025-12-09T11:56:51.773717",
       "severity": "INFO",
       "error_type": "GeneralError",
       "error_code": "GENERAL_ERROR",
@@ -56,10 +56,10 @@
       "context": {},
       "traceback": "",
       "component": "ENGINE_INIT",
-      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+      "session_id": "9b2b4718-ace3-4d5a-9104-90f46e62956d"
     },
     {
-      "timestamp": "2025-12-09T10:59:43.321204",
+      "timestamp": "2025-12-09T11:56:51.883355",
       "severity": "INFO",
       "error_type": "GeneralError",
       "error_code": "GENERAL_ERROR",
@@ -69,10 +69,10 @@
       },
       "traceback": "",
       "component": "ENGINE_INIT",
-      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+      "session_id": "9b2b4718-ace3-4d5a-9104-90f46e62956d"
     },
     {
-      "timestamp": "2025-12-09T10:59:43.324738",
+      "timestamp": "2025-12-09T11:56:51.887785",
       "severity": "INFO",
       "error_type": "GeneralError",
       "error_code": "GENERAL_ERROR",
@@ -80,10 +80,10 @@
       "context": {},
       "traceback": "",
       "component": "ENGINE_INIT",
-      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+      "session_id": "9b2b4718-ace3-4d5a-9104-90f46e62956d"
     },
     {
-      "timestamp": "2025-12-09T10:59:43.324838",
+      "timestamp": "2025-12-09T11:56:51.887897",
       "severity": "INFO",
       "error_type": "GeneralError",
       "error_code": "GENERAL_ERROR",
@@ -91,10 +91,10 @@
       "context": {},
       "traceback": "",
       "component": "MAIN_WINDOW",
-      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+      "session_id": "9b2b4718-ace3-4d5a-9104-90f46e62956d"
     },
     {
-      "timestamp": "2025-12-09T10:59:43.454925",
+      "timestamp": "2025-12-09T11:56:52.046370",
       "severity": "INFO",
       "error_type": "GeneralError",
       "error_code": "GENERAL_ERROR",
@@ -102,175 +102,263 @@
       "context": {},
       "traceback": "",
       "component": "MAIN",
-      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+      "session_id": "9b2b4718-ace3-4d5a-9104-90f46e62956d"
     },
     {
-      "timestamp": "2025-12-09T11:00:14.045293",
+      "timestamp": "2025-12-09T11:56:59.169962",
       "severity": "INFO",
       "error_type": "GeneralError",
       "error_code": "GENERAL_ERROR",
-      "message": "Loaded mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/sun.glb: 4286 vertices, Texture: False",
+      "message": "Loaded mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/sun.glb: 4286 vertices, Texture: True",
       "context": {},
       "traceback": "",
       "component": "MODEL_LOADER",
-      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+      "session_id": "9b2b4718-ace3-4d5a-9104-90f46e62956d"
     },
     {
-      "timestamp": "2025-12-09T11:00:14.050326",
-      "severity": "INFO",
-      "error_type": "GeneralError",
-      "error_code": "GENERAL_ERROR",
-      "message": "Added mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/sun.glb",
+      "timestamp": "2025-12-09T11:56:59.171752",
+      "severity": "ERROR",
+      "error_type": "TypeError",
+      "error_code": "UNKNOWN",
+      "message": "Visual.__init__() got an unexpected keyword argument 'texcoords'",
       "context": {},
-      "traceback": "",
+      "traceback": "Traceback (most recent call last):\n  File \"/home/mfscpayload-690/Desktop/StellarForge/src/vis/universe_renderer.py\", line 345, in add_mesh\n    mesh_visual = visuals.Mesh(vertices=vertices, faces=faces,\n                             texcoords=uvs, shading='smooth')\n  File \"/home/mfscpayload-690/Desktop/StellarForge/.venv/lib/python3.13/site-packages/vispy/scene/visuals.py\", line 134, in __init__\n    subclass.__init__(self, *args, **kwargs)\n    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/mfscpayload-690/Desktop/StellarForge/.venv/lib/python3.13/site-packages/vispy/visuals/mesh.py\", line 102, in __init__\n    Visual.__init__(self, vcode=self._shaders['vertex'], fcode=self._shaders['fragment'],\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                    **kwargs)\n                    ^^^^^^^^^\nTypeError: Visual.__init__() got an unexpected keyword argument 'texcoords'\n",
       "component": "RENDERER_MESH",
-      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+      "session_id": "9b2b4718-ace3-4d5a-9104-90f46e62956d"
     },
     {
-      "timestamp": "2025-12-09T11:00:14.147510",
+      "timestamp": "2025-12-09T11:57:06.962962",
       "severity": "INFO",
       "error_type": "GeneralError",
       "error_code": "GENERAL_ERROR",
-      "message": "Loaded mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/mercury_natural_color.glb: 16422 vertices, Texture: False",
+      "message": "Loaded solar system body: sun.glb at distance 0",
+      "context": {},
+      "traceback": "",
+      "component": "SOLAR_SYSTEM",
+      "session_id": "9b2b4718-ace3-4d5a-9104-90f46e62956d"
+    },
+    {
+      "timestamp": "2025-12-09T11:57:07.111900",
+      "severity": "INFO",
+      "error_type": "GeneralError",
+      "error_code": "GENERAL_ERROR",
+      "message": "Loaded mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/mercury_natural_color.glb: 16422 vertices, Texture: True",
       "context": {},
       "traceback": "",
       "component": "MODEL_LOADER",
-      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+      "session_id": "9b2b4718-ace3-4d5a-9104-90f46e62956d"
     },
     {
-      "timestamp": "2025-12-09T11:00:14.153883",
-      "severity": "INFO",
-      "error_type": "GeneralError",
-      "error_code": "GENERAL_ERROR",
-      "message": "Added mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/mercury_natural_color.glb",
+      "timestamp": "2025-12-09T11:57:07.112583",
+      "severity": "ERROR",
+      "error_type": "TypeError",
+      "error_code": "UNKNOWN",
+      "message": "Visual.__init__() got an unexpected keyword argument 'texcoords'",
       "context": {},
-      "traceback": "",
+      "traceback": "Traceback (most recent call last):\n  File \"/home/mfscpayload-690/Desktop/StellarForge/src/vis/universe_renderer.py\", line 345, in add_mesh\n    mesh_visual = visuals.Mesh(vertices=vertices, faces=faces,\n                             texcoords=uvs, shading='smooth')\n  File \"/home/mfscpayload-690/Desktop/StellarForge/.venv/lib/python3.13/site-packages/vispy/scene/visuals.py\", line 134, in __init__\n    subclass.__init__(self, *args, **kwargs)\n    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/mfscpayload-690/Desktop/StellarForge/.venv/lib/python3.13/site-packages/vispy/visuals/mesh.py\", line 102, in __init__\n    Visual.__init__(self, vcode=self._shaders['vertex'], fcode=self._shaders['fragment'],\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                    **kwargs)\n                    ^^^^^^^^^\nTypeError: Visual.__init__() got an unexpected keyword argument 'texcoords'\n",
       "component": "RENDERER_MESH",
-      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+      "session_id": "9b2b4718-ace3-4d5a-9104-90f46e62956d"
     },
     {
-      "timestamp": "2025-12-09T11:00:14.340933",
+      "timestamp": "2025-12-09T11:57:08.982977",
       "severity": "INFO",
       "error_type": "GeneralError",
       "error_code": "GENERAL_ERROR",
-      "message": "Loaded mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/venus.glb: 16422 vertices, Texture: False",
+      "message": "Loaded solar system body: mercury_natural_color.glb at distance 40",
+      "context": {},
+      "traceback": "",
+      "component": "SOLAR_SYSTEM",
+      "session_id": "9b2b4718-ace3-4d5a-9104-90f46e62956d"
+    },
+    {
+      "timestamp": "2025-12-09T11:57:09.164803",
+      "severity": "INFO",
+      "error_type": "GeneralError",
+      "error_code": "GENERAL_ERROR",
+      "message": "Loaded mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/venus.glb: 16422 vertices, Texture: True",
       "context": {},
       "traceback": "",
       "component": "MODEL_LOADER",
-      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+      "session_id": "9b2b4718-ace3-4d5a-9104-90f46e62956d"
     },
     {
-      "timestamp": "2025-12-09T11:00:14.344903",
-      "severity": "INFO",
-      "error_type": "GeneralError",
-      "error_code": "GENERAL_ERROR",
-      "message": "Added mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/venus.glb",
+      "timestamp": "2025-12-09T11:57:09.165458",
+      "severity": "ERROR",
+      "error_type": "TypeError",
+      "error_code": "UNKNOWN",
+      "message": "Visual.__init__() got an unexpected keyword argument 'texcoords'",
       "context": {},
-      "traceback": "",
+      "traceback": "Traceback (most recent call last):\n  File \"/home/mfscpayload-690/Desktop/StellarForge/src/vis/universe_renderer.py\", line 345, in add_mesh\n    mesh_visual = visuals.Mesh(vertices=vertices, faces=faces,\n                             texcoords=uvs, shading='smooth')\n  File \"/home/mfscpayload-690/Desktop/StellarForge/.venv/lib/python3.13/site-packages/vispy/scene/visuals.py\", line 134, in __init__\n    subclass.__init__(self, *args, **kwargs)\n    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/mfscpayload-690/Desktop/StellarForge/.venv/lib/python3.13/site-packages/vispy/visuals/mesh.py\", line 102, in __init__\n    Visual.__init__(self, vcode=self._shaders['vertex'], fcode=self._shaders['fragment'],\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                    **kwargs)\n                    ^^^^^^^^^\nTypeError: Visual.__init__() got an unexpected keyword argument 'texcoords'\n",
       "component": "RENDERER_MESH",
-      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+      "session_id": "9b2b4718-ace3-4d5a-9104-90f46e62956d"
     },
     {
-      "timestamp": "2025-12-09T11:00:14.489019",
+      "timestamp": "2025-12-09T11:57:10.534797",
       "severity": "INFO",
       "error_type": "GeneralError",
       "error_code": "GENERAL_ERROR",
-      "message": "Loaded mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/earth.glb: 16422 vertices, Texture: False",
+      "message": "Loaded solar system body: venus.glb at distance 70",
+      "context": {},
+      "traceback": "",
+      "component": "SOLAR_SYSTEM",
+      "session_id": "9b2b4718-ace3-4d5a-9104-90f46e62956d"
+    },
+    {
+      "timestamp": "2025-12-09T11:57:10.692277",
+      "severity": "INFO",
+      "error_type": "GeneralError",
+      "error_code": "GENERAL_ERROR",
+      "message": "Loaded mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/earth.glb: 16422 vertices, Texture: True",
       "context": {},
       "traceback": "",
       "component": "MODEL_LOADER",
-      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+      "session_id": "9b2b4718-ace3-4d5a-9104-90f46e62956d"
     },
     {
-      "timestamp": "2025-12-09T11:00:14.492862",
-      "severity": "INFO",
-      "error_type": "GeneralError",
-      "error_code": "GENERAL_ERROR",
-      "message": "Added mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/earth.glb",
+      "timestamp": "2025-12-09T11:57:10.692914",
+      "severity": "ERROR",
+      "error_type": "TypeError",
+      "error_code": "UNKNOWN",
+      "message": "Visual.__init__() got an unexpected keyword argument 'texcoords'",
       "context": {},
-      "traceback": "",
+      "traceback": "Traceback (most recent call last):\n  File \"/home/mfscpayload-690/Desktop/StellarForge/src/vis/universe_renderer.py\", line 345, in add_mesh\n    mesh_visual = visuals.Mesh(vertices=vertices, faces=faces,\n                             texcoords=uvs, shading='smooth')\n  File \"/home/mfscpayload-690/Desktop/StellarForge/.venv/lib/python3.13/site-packages/vispy/scene/visuals.py\", line 134, in __init__\n    subclass.__init__(self, *args, **kwargs)\n    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/mfscpayload-690/Desktop/StellarForge/.venv/lib/python3.13/site-packages/vispy/visuals/mesh.py\", line 102, in __init__\n    Visual.__init__(self, vcode=self._shaders['vertex'], fcode=self._shaders['fragment'],\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                    **kwargs)\n                    ^^^^^^^^^\nTypeError: Visual.__init__() got an unexpected keyword argument 'texcoords'\n",
       "component": "RENDERER_MESH",
-      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+      "session_id": "9b2b4718-ace3-4d5a-9104-90f46e62956d"
     },
     {
-      "timestamp": "2025-12-09T11:00:14.600357",
+      "timestamp": "2025-12-09T11:57:11.286728",
       "severity": "INFO",
       "error_type": "GeneralError",
       "error_code": "GENERAL_ERROR",
-      "message": "Loaded mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/the_moon_sharp.glb: 16422 vertices, Texture: False",
+      "message": "Loaded solar system body: earth.glb at distance 100",
+      "context": {},
+      "traceback": "",
+      "component": "SOLAR_SYSTEM",
+      "session_id": "9b2b4718-ace3-4d5a-9104-90f46e62956d"
+    },
+    {
+      "timestamp": "2025-12-09T11:57:11.459422",
+      "severity": "INFO",
+      "error_type": "GeneralError",
+      "error_code": "GENERAL_ERROR",
+      "message": "Loaded mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/the_moon_sharp.glb: 16422 vertices, Texture: True",
       "context": {},
       "traceback": "",
       "component": "MODEL_LOADER",
-      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+      "session_id": "9b2b4718-ace3-4d5a-9104-90f46e62956d"
     },
     {
-      "timestamp": "2025-12-09T11:00:14.605443",
-      "severity": "INFO",
-      "error_type": "GeneralError",
-      "error_code": "GENERAL_ERROR",
-      "message": "Added mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/the_moon_sharp.glb",
+      "timestamp": "2025-12-09T11:57:11.460086",
+      "severity": "ERROR",
+      "error_type": "TypeError",
+      "error_code": "UNKNOWN",
+      "message": "Visual.__init__() got an unexpected keyword argument 'texcoords'",
       "context": {},
-      "traceback": "",
+      "traceback": "Traceback (most recent call last):\n  File \"/home/mfscpayload-690/Desktop/StellarForge/src/vis/universe_renderer.py\", line 345, in add_mesh\n    mesh_visual = visuals.Mesh(vertices=vertices, faces=faces,\n                             texcoords=uvs, shading='smooth')\n  File \"/home/mfscpayload-690/Desktop/StellarForge/.venv/lib/python3.13/site-packages/vispy/scene/visuals.py\", line 134, in __init__\n    subclass.__init__(self, *args, **kwargs)\n    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/mfscpayload-690/Desktop/StellarForge/.venv/lib/python3.13/site-packages/vispy/visuals/mesh.py\", line 102, in __init__\n    Visual.__init__(self, vcode=self._shaders['vertex'], fcode=self._shaders['fragment'],\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                    **kwargs)\n                    ^^^^^^^^^\nTypeError: Visual.__init__() got an unexpected keyword argument 'texcoords'\n",
       "component": "RENDERER_MESH",
-      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+      "session_id": "9b2b4718-ace3-4d5a-9104-90f46e62956d"
     },
     {
-      "timestamp": "2025-12-09T11:00:14.728744",
+      "timestamp": "2025-12-09T11:57:12.361271",
       "severity": "INFO",
       "error_type": "GeneralError",
       "error_code": "GENERAL_ERROR",
-      "message": "Loaded mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/mars.glb: 8249 vertices, Texture: False",
+      "message": "Loaded solar system body: the_moon_sharp.glb at distance 105",
+      "context": {},
+      "traceback": "",
+      "component": "SOLAR_SYSTEM",
+      "session_id": "9b2b4718-ace3-4d5a-9104-90f46e62956d"
+    },
+    {
+      "timestamp": "2025-12-09T11:57:12.521322",
+      "severity": "INFO",
+      "error_type": "GeneralError",
+      "error_code": "GENERAL_ERROR",
+      "message": "Loaded mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/mars.glb: 8249 vertices, Texture: True",
       "context": {},
       "traceback": "",
       "component": "MODEL_LOADER",
-      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+      "session_id": "9b2b4718-ace3-4d5a-9104-90f46e62956d"
     },
     {
-      "timestamp": "2025-12-09T11:00:14.732667",
-      "severity": "INFO",
-      "error_type": "GeneralError",
-      "error_code": "GENERAL_ERROR",
-      "message": "Added mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/mars.glb",
+      "timestamp": "2025-12-09T11:57:12.536976",
+      "severity": "ERROR",
+      "error_type": "TypeError",
+      "error_code": "UNKNOWN",
+      "message": "Visual.__init__() got an unexpected keyword argument 'texcoords'",
       "context": {},
-      "traceback": "",
+      "traceback": "Traceback (most recent call last):\n  File \"/home/mfscpayload-690/Desktop/StellarForge/src/vis/universe_renderer.py\", line 345, in add_mesh\n    mesh_visual = visuals.Mesh(vertices=vertices, faces=faces,\n                             texcoords=uvs, shading='smooth')\n  File \"/home/mfscpayload-690/Desktop/StellarForge/.venv/lib/python3.13/site-packages/vispy/scene/visuals.py\", line 134, in __init__\n    subclass.__init__(self, *args, **kwargs)\n    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/mfscpayload-690/Desktop/StellarForge/.venv/lib/python3.13/site-packages/vispy/visuals/mesh.py\", line 102, in __init__\n    Visual.__init__(self, vcode=self._shaders['vertex'], fcode=self._shaders['fragment'],\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                    **kwargs)\n                    ^^^^^^^^^\nTypeError: Visual.__init__() got an unexpected keyword argument 'texcoords'\n",
       "component": "RENDERER_MESH",
-      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+      "session_id": "9b2b4718-ace3-4d5a-9104-90f46e62956d"
     },
     {
-      "timestamp": "2025-12-09T11:00:15.826818",
+      "timestamp": "2025-12-09T11:57:13.099626",
       "severity": "INFO",
       "error_type": "GeneralError",
       "error_code": "GENERAL_ERROR",
-      "message": "Loaded mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/jupiter.glb: 2048 vertices, Texture: False",
+      "message": "Loaded solar system body: mars.glb at distance 150",
+      "context": {},
+      "traceback": "",
+      "component": "SOLAR_SYSTEM",
+      "session_id": "9b2b4718-ace3-4d5a-9104-90f46e62956d"
+    },
+    {
+      "timestamp": "2025-12-09T11:57:14.084981",
+      "severity": "INFO",
+      "error_type": "GeneralError",
+      "error_code": "GENERAL_ERROR",
+      "message": "Loaded mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/jupiter.glb: 2048 vertices, Texture: True",
       "context": {},
       "traceback": "",
       "component": "MODEL_LOADER",
-      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+      "session_id": "9b2b4718-ace3-4d5a-9104-90f46e62956d"
     },
     {
-      "timestamp": "2025-12-09T11:00:15.831684",
-      "severity": "INFO",
-      "error_type": "GeneralError",
-      "error_code": "GENERAL_ERROR",
-      "message": "Added mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/jupiter.glb",
+      "timestamp": "2025-12-09T11:57:14.085624",
+      "severity": "ERROR",
+      "error_type": "TypeError",
+      "error_code": "UNKNOWN",
+      "message": "Visual.__init__() got an unexpected keyword argument 'texcoords'",
       "context": {},
-      "traceback": "",
+      "traceback": "Traceback (most recent call last):\n  File \"/home/mfscpayload-690/Desktop/StellarForge/src/vis/universe_renderer.py\", line 345, in add_mesh\n    mesh_visual = visuals.Mesh(vertices=vertices, faces=faces,\n                             texcoords=uvs, shading='smooth')\n  File \"/home/mfscpayload-690/Desktop/StellarForge/.venv/lib/python3.13/site-packages/vispy/scene/visuals.py\", line 134, in __init__\n    subclass.__init__(self, *args, **kwargs)\n    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/mfscpayload-690/Desktop/StellarForge/.venv/lib/python3.13/site-packages/vispy/visuals/mesh.py\", line 102, in __init__\n    Visual.__init__(self, vcode=self._shaders['vertex'], fcode=self._shaders['fragment'],\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                    **kwargs)\n                    ^^^^^^^^^\nTypeError: Visual.__init__() got an unexpected keyword argument 'texcoords'\n",
       "component": "RENDERER_MESH",
-      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+      "session_id": "9b2b4718-ace3-4d5a-9104-90f46e62956d"
     },
     {
-      "timestamp": "2025-12-09T11:00:16.497152",
+      "timestamp": "2025-12-09T11:57:18.544379",
       "severity": "INFO",
       "error_type": "GeneralError",
       "error_code": "GENERAL_ERROR",
-      "message": "Loaded mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/saturno_v1.1.glb: 202490 vertices, Texture: False",
+      "message": "Loaded solar system body: jupiter.glb at distance 300",
+      "context": {},
+      "traceback": "",
+      "component": "SOLAR_SYSTEM",
+      "session_id": "9b2b4718-ace3-4d5a-9104-90f46e62956d"
+    },
+    {
+      "timestamp": "2025-12-09T11:57:19.332599",
+      "severity": "INFO",
+      "error_type": "GeneralError",
+      "error_code": "GENERAL_ERROR",
+      "message": "Simplifying mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/saturno_v1.1.glb: 202490 -> 20000 vertices (texture will be lost)",
       "context": {},
       "traceback": "",
       "component": "MODEL_LOADER",
-      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+      "session_id": "9b2b4718-ace3-4d5a-9104-90f46e62956d"
     },
     {
-      "timestamp": "2025-12-09T11:00:16.510692",
+      "timestamp": "2025-12-09T11:57:21.205188",
+      "severity": "INFO",
+      "error_type": "GeneralError",
+      "error_code": "GENERAL_ERROR",
+      "message": "Loaded mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/saturno_v1.1.glb: 40372 vertices, Texture: False",
+      "context": {},
+      "traceback": "",
+      "component": "MODEL_LOADER",
+      "session_id": "9b2b4718-ace3-4d5a-9104-90f46e62956d"
+    },
+    {
+      "timestamp": "2025-12-09T11:57:21.224534",
       "severity": "INFO",
       "error_type": "GeneralError",
       "error_code": "GENERAL_ERROR",
@@ -278,208 +366,120 @@
       "context": {},
       "traceback": "",
       "component": "RENDERER_MESH",
-      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+      "session_id": "9b2b4718-ace3-4d5a-9104-90f46e62956d"
     },
     {
-      "timestamp": "2025-12-09T11:00:16.533805",
+      "timestamp": "2025-12-09T11:57:21.224672",
       "severity": "INFO",
       "error_type": "GeneralError",
       "error_code": "GENERAL_ERROR",
-      "message": "Loaded mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/uranus.glb: 16422 vertices, Texture: False",
+      "message": "Loaded solar system body: saturno_v1.1.glb at distance 550",
+      "context": {},
+      "traceback": "",
+      "component": "SOLAR_SYSTEM",
+      "session_id": "9b2b4718-ace3-4d5a-9104-90f46e62956d"
+    },
+    {
+      "timestamp": "2025-12-09T11:57:21.256082",
+      "severity": "INFO",
+      "error_type": "GeneralError",
+      "error_code": "GENERAL_ERROR",
+      "message": "Loaded mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/uranus.glb: 16422 vertices, Texture: True",
       "context": {},
       "traceback": "",
       "component": "MODEL_LOADER",
-      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+      "session_id": "9b2b4718-ace3-4d5a-9104-90f46e62956d"
     },
     {
-      "timestamp": "2025-12-09T11:00:16.563527",
+      "timestamp": "2025-12-09T11:57:21.256860",
+      "severity": "ERROR",
+      "error_type": "TypeError",
+      "error_code": "UNKNOWN",
+      "message": "Visual.__init__() got an unexpected keyword argument 'texcoords'",
+      "context": {},
+      "traceback": "Traceback (most recent call last):\n  File \"/home/mfscpayload-690/Desktop/StellarForge/src/vis/universe_renderer.py\", line 345, in add_mesh\n    mesh_visual = visuals.Mesh(vertices=vertices, faces=faces,\n                             texcoords=uvs, shading='smooth')\n  File \"/home/mfscpayload-690/Desktop/StellarForge/.venv/lib/python3.13/site-packages/vispy/scene/visuals.py\", line 134, in __init__\n    subclass.__init__(self, *args, **kwargs)\n    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/mfscpayload-690/Desktop/StellarForge/.venv/lib/python3.13/site-packages/vispy/visuals/mesh.py\", line 102, in __init__\n    Visual.__init__(self, vcode=self._shaders['vertex'], fcode=self._shaders['fragment'],\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                    **kwargs)\n                    ^^^^^^^^^\nTypeError: Visual.__init__() got an unexpected keyword argument 'texcoords'\n",
+      "component": "RENDERER_MESH",
+      "session_id": "9b2b4718-ace3-4d5a-9104-90f46e62956d"
+    },
+    {
+      "timestamp": "2025-12-09T11:57:22.773206",
       "severity": "INFO",
       "error_type": "GeneralError",
       "error_code": "GENERAL_ERROR",
-      "message": "Added mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/uranus.glb",
+      "message": "Loaded solar system body: uranus.glb at distance 900",
       "context": {},
       "traceback": "",
-      "component": "RENDERER_MESH",
-      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+      "component": "SOLAR_SYSTEM",
+      "session_id": "9b2b4718-ace3-4d5a-9104-90f46e62956d"
     },
     {
-      "timestamp": "2025-12-09T11:00:16.597622",
+      "timestamp": "2025-12-09T11:57:22.811398",
       "severity": "INFO",
       "error_type": "GeneralError",
       "error_code": "GENERAL_ERROR",
-      "message": "Loaded mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/neptune.glb: 16422 vertices, Texture: False",
+      "message": "Loaded mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/neptune.glb: 16422 vertices, Texture: True",
       "context": {},
       "traceback": "",
       "component": "MODEL_LOADER",
-      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+      "session_id": "9b2b4718-ace3-4d5a-9104-90f46e62956d"
     },
     {
-      "timestamp": "2025-12-09T11:00:16.601734",
+      "timestamp": "2025-12-09T11:57:22.812038",
+      "severity": "ERROR",
+      "error_type": "TypeError",
+      "error_code": "UNKNOWN",
+      "message": "Visual.__init__() got an unexpected keyword argument 'texcoords'",
+      "context": {},
+      "traceback": "Traceback (most recent call last):\n  File \"/home/mfscpayload-690/Desktop/StellarForge/src/vis/universe_renderer.py\", line 345, in add_mesh\n    mesh_visual = visuals.Mesh(vertices=vertices, faces=faces,\n                             texcoords=uvs, shading='smooth')\n  File \"/home/mfscpayload-690/Desktop/StellarForge/.venv/lib/python3.13/site-packages/vispy/scene/visuals.py\", line 134, in __init__\n    subclass.__init__(self, *args, **kwargs)\n    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/mfscpayload-690/Desktop/StellarForge/.venv/lib/python3.13/site-packages/vispy/visuals/mesh.py\", line 102, in __init__\n    Visual.__init__(self, vcode=self._shaders['vertex'], fcode=self._shaders['fragment'],\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                    **kwargs)\n                    ^^^^^^^^^\nTypeError: Visual.__init__() got an unexpected keyword argument 'texcoords'\n",
+      "component": "RENDERER_MESH",
+      "session_id": "9b2b4718-ace3-4d5a-9104-90f46e62956d"
+    },
+    {
+      "timestamp": "2025-12-09T11:57:24.026187",
       "severity": "INFO",
       "error_type": "GeneralError",
       "error_code": "GENERAL_ERROR",
-      "message": "Added mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/neptune.glb",
+      "message": "Loaded solar system body: neptune.glb at distance 1200",
       "context": {},
       "traceback": "",
-      "component": "RENDERER_MESH",
-      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+      "component": "SOLAR_SYSTEM",
+      "session_id": "9b2b4718-ace3-4d5a-9104-90f46e62956d"
     },
     {
-      "timestamp": "2025-12-09T11:00:16.678259",
+      "timestamp": "2025-12-09T11:57:24.120272",
       "severity": "INFO",
       "error_type": "GeneralError",
       "error_code": "GENERAL_ERROR",
-      "message": "Loaded mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/pluto.glb: 16422 vertices, Texture: False",
+      "message": "Loaded mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/pluto.glb: 16422 vertices, Texture: True",
       "context": {},
       "traceback": "",
       "component": "MODEL_LOADER",
-      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+      "session_id": "9b2b4718-ace3-4d5a-9104-90f46e62956d"
     },
     {
-      "timestamp": "2025-12-09T11:00:16.682384",
-      "severity": "INFO",
-      "error_type": "GeneralError",
-      "error_code": "GENERAL_ERROR",
-      "message": "Added mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/pluto.glb",
+      "timestamp": "2025-12-09T11:57:24.120982",
+      "severity": "ERROR",
+      "error_type": "TypeError",
+      "error_code": "UNKNOWN",
+      "message": "Visual.__init__() got an unexpected keyword argument 'texcoords'",
       "context": {},
-      "traceback": "",
+      "traceback": "Traceback (most recent call last):\n  File \"/home/mfscpayload-690/Desktop/StellarForge/src/vis/universe_renderer.py\", line 345, in add_mesh\n    mesh_visual = visuals.Mesh(vertices=vertices, faces=faces,\n                             texcoords=uvs, shading='smooth')\n  File \"/home/mfscpayload-690/Desktop/StellarForge/.venv/lib/python3.13/site-packages/vispy/scene/visuals.py\", line 134, in __init__\n    subclass.__init__(self, *args, **kwargs)\n    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/mfscpayload-690/Desktop/StellarForge/.venv/lib/python3.13/site-packages/vispy/visuals/mesh.py\", line 102, in __init__\n    Visual.__init__(self, vcode=self._shaders['vertex'], fcode=self._shaders['fragment'],\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                    **kwargs)\n                    ^^^^^^^^^\nTypeError: Visual.__init__() got an unexpected keyword argument 'texcoords'\n",
       "component": "RENDERER_MESH",
-      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+      "session_id": "9b2b4718-ace3-4d5a-9104-90f46e62956d"
     },
     {
-      "timestamp": "2025-12-09T11:00:36.784026",
+      "timestamp": "2025-12-09T11:57:24.393276",
       "severity": "INFO",
       "error_type": "GeneralError",
       "error_code": "GENERAL_ERROR",
-      "message": "Loaded mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/sun.glb: 4286 vertices, Texture: False",
+      "message": "Loaded solar system body: pluto.glb at distance 1400",
       "context": {},
       "traceback": "",
-      "component": "MODEL_LOADER",
-      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+      "component": "SOLAR_SYSTEM",
+      "session_id": "9b2b4718-ace3-4d5a-9104-90f46e62956d"
     },
     {
-      "timestamp": "2025-12-09T11:00:36.788120",
-      "severity": "INFO",
-      "error_type": "GeneralError",
-      "error_code": "GENERAL_ERROR",
-      "message": "Added mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/sun.glb",
-      "context": {},
-      "traceback": "",
-      "component": "RENDERER_MESH",
-      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
-    },
-    {
-      "timestamp": "2025-12-09T11:00:36.970297",
-      "severity": "INFO",
-      "error_type": "GeneralError",
-      "error_code": "GENERAL_ERROR",
-      "message": "Loaded mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/sun.glb: 4286 vertices, Texture: False",
-      "context": {},
-      "traceback": "",
-      "component": "MODEL_LOADER",
-      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
-    },
-    {
-      "timestamp": "2025-12-09T11:00:36.974187",
-      "severity": "INFO",
-      "error_type": "GeneralError",
-      "error_code": "GENERAL_ERROR",
-      "message": "Added mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/sun.glb",
-      "context": {},
-      "traceback": "",
-      "component": "RENDERER_MESH",
-      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
-    },
-    {
-      "timestamp": "2025-12-09T11:00:37.149646",
-      "severity": "INFO",
-      "error_type": "GeneralError",
-      "error_code": "GENERAL_ERROR",
-      "message": "Loaded mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/sun.glb: 4286 vertices, Texture: False",
-      "context": {},
-      "traceback": "",
-      "component": "MODEL_LOADER",
-      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
-    },
-    {
-      "timestamp": "2025-12-09T11:00:37.153612",
-      "severity": "INFO",
-      "error_type": "GeneralError",
-      "error_code": "GENERAL_ERROR",
-      "message": "Added mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/sun.glb",
-      "context": {},
-      "traceback": "",
-      "component": "RENDERER_MESH",
-      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
-    },
-    {
-      "timestamp": "2025-12-09T11:00:37.714727",
-      "severity": "INFO",
-      "error_type": "GeneralError",
-      "error_code": "GENERAL_ERROR",
-      "message": "Loaded mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/sun.glb: 4286 vertices, Texture: False",
-      "context": {},
-      "traceback": "",
-      "component": "MODEL_LOADER",
-      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
-    },
-    {
-      "timestamp": "2025-12-09T11:00:37.718427",
-      "severity": "INFO",
-      "error_type": "GeneralError",
-      "error_code": "GENERAL_ERROR",
-      "message": "Added mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/sun.glb",
-      "context": {},
-      "traceback": "",
-      "component": "RENDERER_MESH",
-      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
-    },
-    {
-      "timestamp": "2025-12-09T11:00:38.462514",
-      "severity": "INFO",
-      "error_type": "GeneralError",
-      "error_code": "GENERAL_ERROR",
-      "message": "Loaded mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/pluto.glb: 16422 vertices, Texture: False",
-      "context": {},
-      "traceback": "",
-      "component": "MODEL_LOADER",
-      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
-    },
-    {
-      "timestamp": "2025-12-09T11:00:38.467529",
-      "severity": "INFO",
-      "error_type": "GeneralError",
-      "error_code": "GENERAL_ERROR",
-      "message": "Added mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/pluto.glb",
-      "context": {},
-      "traceback": "",
-      "component": "RENDERER_MESH",
-      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
-    },
-    {
-      "timestamp": "2025-12-09T11:00:39.236985",
-      "severity": "INFO",
-      "error_type": "GeneralError",
-      "error_code": "GENERAL_ERROR",
-      "message": "Loaded mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/the_moon_sharp.glb: 16422 vertices, Texture: False",
-      "context": {},
-      "traceback": "",
-      "component": "MODEL_LOADER",
-      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
-    },
-    {
-      "timestamp": "2025-12-09T11:00:39.241645",
-      "severity": "INFO",
-      "error_type": "GeneralError",
-      "error_code": "GENERAL_ERROR",
-      "message": "Added mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/the_moon_sharp.glb",
-      "context": {},
-      "traceback": "",
-      "component": "RENDERER_MESH",
-      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
-    },
-    {
-      "timestamp": "2025-12-09T11:01:11.797814",
+      "timestamp": "2025-12-09T11:57:37.433002",
       "severity": "INFO",
       "error_type": "GeneralError",
       "error_code": "GENERAL_ERROR",
@@ -487,13 +487,14 @@
       "context": {},
       "traceback": "",
       "component": "MAIN",
-      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+      "session_id": "9b2b4718-ace3-4d5a-9104-90f46e62956d"
     }
   ],
   "summary": {
     "total_errors": 44,
     "by_severity": {
-      "INFO": 44
+      "INFO": 34,
+      "ERROR": 10
     },
     "by_component": {
       "MAIN": 3,
@@ -502,14 +503,16 @@
       "UI_INIT": 1,
       "ENGINE_INIT": 3,
       "MAIN_WINDOW": 1,
-      "MODEL_LOADER": 17,
-      "RENDERER_MESH": 17
+      "MODEL_LOADER": 12,
+      "RENDERER_MESH": 11,
+      "SOLAR_SYSTEM": 11
     },
     "by_error_code": {
-      "GENERAL_ERROR": 44
+      "GENERAL_ERROR": 34,
+      "UNKNOWN": 10
     },
     "latest_error": {
-      "timestamp": "2025-12-09T11:01:11.797814",
+      "timestamp": "2025-12-09T11:57:37.433002",
       "severity": "INFO",
       "error_type": "GeneralError",
       "error_code": "GENERAL_ERROR",
@@ -517,7 +520,7 @@
       "context": {},
       "traceback": "",
       "component": "MAIN",
-      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+      "session_id": "9b2b4718-ace3-4d5a-9104-90f46e62956d"
     }
   }
 }
