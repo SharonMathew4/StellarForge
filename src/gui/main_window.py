@@ -375,10 +375,16 @@ class MainWindow(QMainWindow):
                 
                 # Validate generated data
                 if positions is None or len(positions) == 0:
-                    raise SimulationError(
-                        "Universe generator produced empty dataset",
-                        context={'volume_size': (32, 32, 32), 'num_galaxies': 3}
+                    self.error_logger.log_error(
+                        "Universe generator produced empty dataset, using fallback",
+                        component="ENGINE_INIT",
+                        severity=ErrorSeverity.WARNING
                     )
+                    # Fallback: Create simple default particles
+                    num_particles = 5000
+                    positions = np.random.uniform(-100, 100, (num_particles, 3)).astype(np.float32)
+                    velocities = np.random.randn(num_particles, 3).astype(np.float32) * 0.5
+                    types = np.zeros(num_particles, dtype=np.int32)
                 
                 self.error_logger.log_error(
                     f"Universe generated: {len(positions)} particles",
@@ -894,10 +900,8 @@ class MainWindow(QMainWindow):
     def load_solar_system(self):
         """Load the complete solar system with real physics and high-fidelity textures."""
         try:
-            # Clear existing simulation
-            self.engine.initialize(0)
+            # Clear existing meshes and visualization but keep simulation running
             self.renderer.clear()
-            self.app_state.reset()
             
             base_path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
             assets_path = os.path.join(base_path, "src", "assets")

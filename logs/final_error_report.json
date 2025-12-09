@@ -1,10 +1,10 @@
 {
-  "session_id": "19609bf8-5d77-4148-91d9-e83946cd5337",
-  "export_timestamp": "2025-12-08T17:55:20.080634",
-  "total_errors": 10,
+  "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16",
+  "export_timestamp": "2025-12-09T11:01:11.798135",
+  "total_errors": 44,
   "errors": [
     {
-      "timestamp": "2025-12-08T17:52:44.477168",
+      "timestamp": "2025-12-09T10:59:41.868307",
       "severity": "INFO",
       "error_type": "GeneralError",
       "error_code": "GENERAL_ERROR",
@@ -12,10 +12,10 @@
       "context": {},
       "traceback": "",
       "component": "MAIN",
-      "session_id": "19609bf8-5d77-4148-91d9-e83946cd5337"
+      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
     },
     {
-      "timestamp": "2025-12-08T17:52:45.544719",
+      "timestamp": "2025-12-09T10:59:43.004411",
       "severity": "INFO",
       "error_type": "GeneralError",
       "error_code": "GENERAL_ERROR",
@@ -23,10 +23,10 @@
       "context": {},
       "traceback": "",
       "component": "MAIN_WINDOW_INIT",
-      "session_id": "19609bf8-5d77-4148-91d9-e83946cd5337"
+      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
     },
     {
-      "timestamp": "2025-12-08T17:52:45.617332",
+      "timestamp": "2025-12-09T10:59:43.135155",
       "severity": "INFO",
       "error_type": "GeneralError",
       "error_code": "GENERAL_ERROR",
@@ -34,10 +34,10 @@
       "context": {},
       "traceback": "",
       "component": "RENDERER_INIT",
-      "session_id": "19609bf8-5d77-4148-91d9-e83946cd5337"
+      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
     },
     {
-      "timestamp": "2025-12-08T17:52:45.669603",
+      "timestamp": "2025-12-09T10:59:43.242636",
       "severity": "INFO",
       "error_type": "GeneralError",
       "error_code": "GENERAL_ERROR",
@@ -45,10 +45,10 @@
       "context": {},
       "traceback": "",
       "component": "UI_INIT",
-      "session_id": "19609bf8-5d77-4148-91d9-e83946cd5337"
+      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
     },
     {
-      "timestamp": "2025-12-08T17:52:45.669743",
+      "timestamp": "2025-12-09T10:59:43.242806",
       "severity": "INFO",
       "error_type": "GeneralError",
       "error_code": "GENERAL_ERROR",
@@ -56,10 +56,10 @@
       "context": {},
       "traceback": "",
       "component": "ENGINE_INIT",
-      "session_id": "19609bf8-5d77-4148-91d9-e83946cd5337"
+      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
     },
     {
-      "timestamp": "2025-12-08T17:52:45.746317",
+      "timestamp": "2025-12-09T10:59:43.321204",
       "severity": "INFO",
       "error_type": "GeneralError",
       "error_code": "GENERAL_ERROR",
@@ -69,10 +69,10 @@
       },
       "traceback": "",
       "component": "ENGINE_INIT",
-      "session_id": "19609bf8-5d77-4148-91d9-e83946cd5337"
+      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
     },
     {
-      "timestamp": "2025-12-08T17:52:45.749508",
+      "timestamp": "2025-12-09T10:59:43.324738",
       "severity": "INFO",
       "error_type": "GeneralError",
       "error_code": "GENERAL_ERROR",
@@ -80,10 +80,10 @@
       "context": {},
       "traceback": "",
       "component": "ENGINE_INIT",
-      "session_id": "19609bf8-5d77-4148-91d9-e83946cd5337"
+      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
     },
     {
-      "timestamp": "2025-12-08T17:52:45.749637",
+      "timestamp": "2025-12-09T10:59:43.324838",
       "severity": "INFO",
       "error_type": "GeneralError",
       "error_code": "GENERAL_ERROR",
@@ -91,10 +91,10 @@
       "context": {},
       "traceback": "",
       "component": "MAIN_WINDOW",
-      "session_id": "19609bf8-5d77-4148-91d9-e83946cd5337"
+      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
     },
     {
-      "timestamp": "2025-12-08T17:52:45.866069",
+      "timestamp": "2025-12-09T10:59:43.454925",
       "severity": "INFO",
       "error_type": "GeneralError",
       "error_code": "GENERAL_ERROR",
@@ -102,10 +102,384 @@
       "context": {},
       "traceback": "",
       "component": "MAIN",
-      "session_id": "19609bf8-5d77-4148-91d9-e83946cd5337"
+      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
     },
     {
-      "timestamp": "2025-12-08T17:55:20.080345",
+      "timestamp": "2025-12-09T11:00:14.045293",
+      "severity": "INFO",
+      "error_type": "GeneralError",
+      "error_code": "GENERAL_ERROR",
+      "message": "Loaded mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/sun.glb: 4286 vertices, Texture: False",
+      "context": {},
+      "traceback": "",
+      "component": "MODEL_LOADER",
+      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+    },
+    {
+      "timestamp": "2025-12-09T11:00:14.050326",
+      "severity": "INFO",
+      "error_type": "GeneralError",
+      "error_code": "GENERAL_ERROR",
+      "message": "Added mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/sun.glb",
+      "context": {},
+      "traceback": "",
+      "component": "RENDERER_MESH",
+      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+    },
+    {
+      "timestamp": "2025-12-09T11:00:14.147510",
+      "severity": "INFO",
+      "error_type": "GeneralError",
+      "error_code": "GENERAL_ERROR",
+      "message": "Loaded mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/mercury_natural_color.glb: 16422 vertices, Texture: False",
+      "context": {},
+      "traceback": "",
+      "component": "MODEL_LOADER",
+      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+    },
+    {
+      "timestamp": "2025-12-09T11:00:14.153883",
+      "severity": "INFO",
+      "error_type": "GeneralError",
+      "error_code": "GENERAL_ERROR",
+      "message": "Added mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/mercury_natural_color.glb",
+      "context": {},
+      "traceback": "",
+      "component": "RENDERER_MESH",
+      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+    },
+    {
+      "timestamp": "2025-12-09T11:00:14.340933",
+      "severity": "INFO",
+      "error_type": "GeneralError",
+      "error_code": "GENERAL_ERROR",
+      "message": "Loaded mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/venus.glb: 16422 vertices, Texture: False",
+      "context": {},
+      "traceback": "",
+      "component": "MODEL_LOADER",
+      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+    },
+    {
+      "timestamp": "2025-12-09T11:00:14.344903",
+      "severity": "INFO",
+      "error_type": "GeneralError",
+      "error_code": "GENERAL_ERROR",
+      "message": "Added mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/venus.glb",
+      "context": {},
+      "traceback": "",
+      "component": "RENDERER_MESH",
+      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+    },
+    {
+      "timestamp": "2025-12-09T11:00:14.489019",
+      "severity": "INFO",
+      "error_type": "GeneralError",
+      "error_code": "GENERAL_ERROR",
+      "message": "Loaded mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/earth.glb: 16422 vertices, Texture: False",
+      "context": {},
+      "traceback": "",
+      "component": "MODEL_LOADER",
+      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+    },
+    {
+      "timestamp": "2025-12-09T11:00:14.492862",
+      "severity": "INFO",
+      "error_type": "GeneralError",
+      "error_code": "GENERAL_ERROR",
+      "message": "Added mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/earth.glb",
+      "context": {},
+      "traceback": "",
+      "component": "RENDERER_MESH",
+      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+    },
+    {
+      "timestamp": "2025-12-09T11:00:14.600357",
+      "severity": "INFO",
+      "error_type": "GeneralError",
+      "error_code": "GENERAL_ERROR",
+      "message": "Loaded mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/the_moon_sharp.glb: 16422 vertices, Texture: False",
+      "context": {},
+      "traceback": "",
+      "component": "MODEL_LOADER",
+      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+    },
+    {
+      "timestamp": "2025-12-09T11:00:14.605443",
+      "severity": "INFO",
+      "error_type": "GeneralError",
+      "error_code": "GENERAL_ERROR",
+      "message": "Added mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/the_moon_sharp.glb",
+      "context": {},
+      "traceback": "",
+      "component": "RENDERER_MESH",
+      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+    },
+    {
+      "timestamp": "2025-12-09T11:00:14.728744",
+      "severity": "INFO",
+      "error_type": "GeneralError",
+      "error_code": "GENERAL_ERROR",
+      "message": "Loaded mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/mars.glb: 8249 vertices, Texture: False",
+      "context": {},
+      "traceback": "",
+      "component": "MODEL_LOADER",
+      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+    },
+    {
+      "timestamp": "2025-12-09T11:00:14.732667",
+      "severity": "INFO",
+      "error_type": "GeneralError",
+      "error_code": "GENERAL_ERROR",
+      "message": "Added mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/mars.glb",
+      "context": {},
+      "traceback": "",
+      "component": "RENDERER_MESH",
+      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+    },
+    {
+      "timestamp": "2025-12-09T11:00:15.826818",
+      "severity": "INFO",
+      "error_type": "GeneralError",
+      "error_code": "GENERAL_ERROR",
+      "message": "Loaded mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/jupiter.glb: 2048 vertices, Texture: False",
+      "context": {},
+      "traceback": "",
+      "component": "MODEL_LOADER",
+      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+    },
+    {
+      "timestamp": "2025-12-09T11:00:15.831684",
+      "severity": "INFO",
+      "error_type": "GeneralError",
+      "error_code": "GENERAL_ERROR",
+      "message": "Added mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/jupiter.glb",
+      "context": {},
+      "traceback": "",
+      "component": "RENDERER_MESH",
+      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+    },
+    {
+      "timestamp": "2025-12-09T11:00:16.497152",
+      "severity": "INFO",
+      "error_type": "GeneralError",
+      "error_code": "GENERAL_ERROR",
+      "message": "Loaded mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/saturno_v1.1.glb: 202490 vertices, Texture: False",
+      "context": {},
+      "traceback": "",
+      "component": "MODEL_LOADER",
+      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+    },
+    {
+      "timestamp": "2025-12-09T11:00:16.510692",
+      "severity": "INFO",
+      "error_type": "GeneralError",
+      "error_code": "GENERAL_ERROR",
+      "message": "Added mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/saturno_v1.1.glb",
+      "context": {},
+      "traceback": "",
+      "component": "RENDERER_MESH",
+      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+    },
+    {
+      "timestamp": "2025-12-09T11:00:16.533805",
+      "severity": "INFO",
+      "error_type": "GeneralError",
+      "error_code": "GENERAL_ERROR",
+      "message": "Loaded mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/uranus.glb: 16422 vertices, Texture: False",
+      "context": {},
+      "traceback": "",
+      "component": "MODEL_LOADER",
+      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+    },
+    {
+      "timestamp": "2025-12-09T11:00:16.563527",
+      "severity": "INFO",
+      "error_type": "GeneralError",
+      "error_code": "GENERAL_ERROR",
+      "message": "Added mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/uranus.glb",
+      "context": {},
+      "traceback": "",
+      "component": "RENDERER_MESH",
+      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+    },
+    {
+      "timestamp": "2025-12-09T11:00:16.597622",
+      "severity": "INFO",
+      "error_type": "GeneralError",
+      "error_code": "GENERAL_ERROR",
+      "message": "Loaded mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/neptune.glb: 16422 vertices, Texture: False",
+      "context": {},
+      "traceback": "",
+      "component": "MODEL_LOADER",
+      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+    },
+    {
+      "timestamp": "2025-12-09T11:00:16.601734",
+      "severity": "INFO",
+      "error_type": "GeneralError",
+      "error_code": "GENERAL_ERROR",
+      "message": "Added mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/neptune.glb",
+      "context": {},
+      "traceback": "",
+      "component": "RENDERER_MESH",
+      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+    },
+    {
+      "timestamp": "2025-12-09T11:00:16.678259",
+      "severity": "INFO",
+      "error_type": "GeneralError",
+      "error_code": "GENERAL_ERROR",
+      "message": "Loaded mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/pluto.glb: 16422 vertices, Texture: False",
+      "context": {},
+      "traceback": "",
+      "component": "MODEL_LOADER",
+      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+    },
+    {
+      "timestamp": "2025-12-09T11:00:16.682384",
+      "severity": "INFO",
+      "error_type": "GeneralError",
+      "error_code": "GENERAL_ERROR",
+      "message": "Added mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/pluto.glb",
+      "context": {},
+      "traceback": "",
+      "component": "RENDERER_MESH",
+      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+    },
+    {
+      "timestamp": "2025-12-09T11:00:36.784026",
+      "severity": "INFO",
+      "error_type": "GeneralError",
+      "error_code": "GENERAL_ERROR",
+      "message": "Loaded mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/sun.glb: 4286 vertices, Texture: False",
+      "context": {},
+      "traceback": "",
+      "component": "MODEL_LOADER",
+      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+    },
+    {
+      "timestamp": "2025-12-09T11:00:36.788120",
+      "severity": "INFO",
+      "error_type": "GeneralError",
+      "error_code": "GENERAL_ERROR",
+      "message": "Added mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/sun.glb",
+      "context": {},
+      "traceback": "",
+      "component": "RENDERER_MESH",
+      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+    },
+    {
+      "timestamp": "2025-12-09T11:00:36.970297",
+      "severity": "INFO",
+      "error_type": "GeneralError",
+      "error_code": "GENERAL_ERROR",
+      "message": "Loaded mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/sun.glb: 4286 vertices, Texture: False",
+      "context": {},
+      "traceback": "",
+      "component": "MODEL_LOADER",
+      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+    },
+    {
+      "timestamp": "2025-12-09T11:00:36.974187",
+      "severity": "INFO",
+      "error_type": "GeneralError",
+      "error_code": "GENERAL_ERROR",
+      "message": "Added mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/sun.glb",
+      "context": {},
+      "traceback": "",
+      "component": "RENDERER_MESH",
+      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+    },
+    {
+      "timestamp": "2025-12-09T11:00:37.149646",
+      "severity": "INFO",
+      "error_type": "GeneralError",
+      "error_code": "GENERAL_ERROR",
+      "message": "Loaded mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/sun.glb: 4286 vertices, Texture: False",
+      "context": {},
+      "traceback": "",
+      "component": "MODEL_LOADER",
+      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+    },
+    {
+      "timestamp": "2025-12-09T11:00:37.153612",
+      "severity": "INFO",
+      "error_type": "GeneralError",
+      "error_code": "GENERAL_ERROR",
+      "message": "Added mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/sun.glb",
+      "context": {},
+      "traceback": "",
+      "component": "RENDERER_MESH",
+      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+    },
+    {
+      "timestamp": "2025-12-09T11:00:37.714727",
+      "severity": "INFO",
+      "error_type": "GeneralError",
+      "error_code": "GENERAL_ERROR",
+      "message": "Loaded mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/sun.glb: 4286 vertices, Texture: False",
+      "context": {},
+      "traceback": "",
+      "component": "MODEL_LOADER",
+      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+    },
+    {
+      "timestamp": "2025-12-09T11:00:37.718427",
+      "severity": "INFO",
+      "error_type": "GeneralError",
+      "error_code": "GENERAL_ERROR",
+      "message": "Added mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/sun.glb",
+      "context": {},
+      "traceback": "",
+      "component": "RENDERER_MESH",
+      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+    },
+    {
+      "timestamp": "2025-12-09T11:00:38.462514",
+      "severity": "INFO",
+      "error_type": "GeneralError",
+      "error_code": "GENERAL_ERROR",
+      "message": "Loaded mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/pluto.glb: 16422 vertices, Texture: False",
+      "context": {},
+      "traceback": "",
+      "component": "MODEL_LOADER",
+      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+    },
+    {
+      "timestamp": "2025-12-09T11:00:38.467529",
+      "severity": "INFO",
+      "error_type": "GeneralError",
+      "error_code": "GENERAL_ERROR",
+      "message": "Added mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/pluto.glb",
+      "context": {},
+      "traceback": "",
+      "component": "RENDERER_MESH",
+      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+    },
+    {
+      "timestamp": "2025-12-09T11:00:39.236985",
+      "severity": "INFO",
+      "error_type": "GeneralError",
+      "error_code": "GENERAL_ERROR",
+      "message": "Loaded mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/the_moon_sharp.glb: 16422 vertices, Texture: False",
+      "context": {},
+      "traceback": "",
+      "component": "MODEL_LOADER",
+      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+    },
+    {
+      "timestamp": "2025-12-09T11:00:39.241645",
+      "severity": "INFO",
+      "error_type": "GeneralError",
+      "error_code": "GENERAL_ERROR",
+      "message": "Added mesh /home/mfscpayload-690/Desktop/StellarForge/src/assets/the_moon_sharp.glb",
+      "context": {},
+      "traceback": "",
+      "component": "RENDERER_MESH",
+      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
+    },
+    {
+      "timestamp": "2025-12-09T11:01:11.797814",
       "severity": "INFO",
       "error_type": "GeneralError",
       "error_code": "GENERAL_ERROR",
@@ -113,13 +487,13 @@
       "context": {},
       "traceback": "",
       "component": "MAIN",
-      "session_id": "19609bf8-5d77-4148-91d9-e83946cd5337"
+      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
     }
   ],
   "summary": {
-    "total_errors": 10,
+    "total_errors": 44,
     "by_severity": {
-      "INFO": 10
+      "INFO": 44
     },
     "by_component": {
       "MAIN": 3,
@@ -127,13 +501,15 @@
       "RENDERER_INIT": 1,
       "UI_INIT": 1,
       "ENGINE_INIT": 3,
-      "MAIN_WINDOW": 1
+      "MAIN_WINDOW": 1,
+      "MODEL_LOADER": 17,
+      "RENDERER_MESH": 17
     },
     "by_error_code": {
-      "GENERAL_ERROR": 10
+      "GENERAL_ERROR": 44
     },
     "latest_error": {
-      "timestamp": "2025-12-08T17:55:20.080345",
+      "timestamp": "2025-12-09T11:01:11.797814",
       "severity": "INFO",
       "error_type": "GeneralError",
       "error_code": "GENERAL_ERROR",
@@ -141,7 +517,7 @@
       "context": {},
       "traceback": "",
       "component": "MAIN",
-      "session_id": "19609bf8-5d77-4148-91d9-e83946cd5337"
+      "session_id": "5cfdd115-a700-400f-942f-8cf7b114bb16"
     }
   }
 }
