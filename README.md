@@ -1,21 +1,62 @@
 # StellarForge
 
-High-performance N-body cosmic simulation application with GPU acceleration via CUDA and real-time 3D visualization. Built with Python (PyQt6, VisPy) for UI and C++ for physics computation.
+High-performance N-body cosmic simulation application with GPU acceleration via CUDA and real-time 3D visualization. Built with Python (PyQt6, VisPy) for UI and C++ for physics computation. StellarForge combines procedural galaxy generation with N-body physics simulation using Barnes-Hut octree algorithms, and the architecture separates the UI layer (Python/PyQt6) from the compute layer (C++ with optional CUDA acceleration), allowing for efficient parallel simulation of 100k+ particles in real-time.
 
-## Overview
 
-StellarForge combines procedural galaxy generation with N-body physics simulation using Barnes-Hut octree algorithms. The architecture separates the UI layer (Python/PyQt6) from the compute layer (C++ with optional CUDA acceleration), allowing for efficient parallel simulation of 100k+ particles in real-time.
+## Technology Stack
 
-## Features
+### Frontend & UI
+- **PyQt6** (v6.6.0+) - Desktop GUI framework with native look-and-feel
+- **VisPy** (v0.14.0+) - GPU-accelerated 3D visualization via OpenGL
+- **Vispy Visuals** - Mesh and marker rendering primitives
+- **OpenGL** - 3D graphics rendering (abstracted by VisPy)
 
-- GPU-accelerated N-body physics (CUDA 11.x+)
-- Barnes-Hut O(N log N) gravity calculation algorithm
-- Real-time 3D rendering with VisPy (OpenGL)
-- Procedural galaxy generation (spiral, elliptical, irregular)
-- Scenario save/load (HDF5 for particle data, JSON for metadata)
-- Dual-mode operation (Observation and Sandbox)
-- Timeline controls with adjustable simulation speed
-- MVC architecture with pluggable physics backends
+### Backend Physics Engine
+- **C++** (C++17 standard) - High-performance N-body physics computation
+- **CUDA** (v11.8+) - GPU compute kernels for parallel particle simulation
+- **OpenMP** - CPU multi-threading for parallel gravity calculations
+- **pybind11** - Python/C++ binding layer for seamless integration
+
+### Core Scientific Computing
+- **NumPy** (v1.24.0+) - Numerical arrays, particle data structures
+- **SciPy** - Scientific algorithms (optimization, sorting)
+- **Astropy** - Astronomical computations and constants
+- **Noise** (Perlin/Simplex) - Procedural universe generation
+
+### Data & File I/O
+- **HDF5** (via h5py) - Efficient particle data serialization
+- **JSON** - Scenario metadata storage
+- **GLB/GLTF** - 3D model asset format support
+- **Trimesh** - 3D mesh processing and optimization
+- **PIL/Pillow** - Texture image processing (PNG, JPG, EXR)
+
+### Physics Algorithms
+- **Barnes-Hut Octree** - O(N log N) gravity approximation
+- **Verlet Integration** - Stable particle position integration
+- **Collision Detection** - AABB spatial partitioning
+- **Perlin Noise Fields** - Galaxy density distributions
+
+### Build & Development Tools
+- **CMake** (v3.20+) - Cross-platform C++ build system
+- **Git** - Version control
+- **Python 3.10+** - Runtime environment
+- **Virtual Environment** (venv) - Isolated Python dependencies
+
+### Operating System Support
+- **Linux** (Ubuntu, Debian, Fedora, Arch, etc.)
+- **macOS** (Intel & Apple Silicon)
+- **Windows 10/11** (with MSVC or WSL2)
+
+### Hardware Acceleration
+- **NVIDIA CUDA** - Support for RTX 3050+, Tesla, Quadro GPUs
+- **CUDA Compute Capability 3.5+** - Architecture support
+- **6GB+ VRAM** - Recommended for 100k+ particles
+
+### Architecture Pattern
+- **MVC** (Model-View-Controller) - Separation of concerns
+- **Plugin Architecture** - Swappable physics engines (Mock vs C++)
+- **Observer Pattern** - State change propagation
+- **Abstraction Layers** - Engine bridge decouples physics from UI
 
 ## Project Structure
 
@@ -224,17 +265,9 @@ Uses all available CPU cores via OpenMP - still performs well for 10k-50k partic
 
 ### Recommended
 - CPU: 8+ cores
-- RAM: 16GB+
-- GPU: NVIDIA RTX 3060+ with 6GB+ VRAM
+- RAM: 12GB+
+- GPU: NVIDIA RTX 3050+ with 6GB+ VRAM
 - Python 3.10+
-
-## Performance Notes
-
-- Mock Engine (Python): ~1000-5000 particles at 60 FPS
-- C++ + OpenMP: ~10,000-50,000 particles at 30-60 FPS
-- C++ + CUDA: ~100,000+ particles at 30-60 FPS (RTX 4050 with 6GB VRAM)
-
-Actual performance depends on particle density, 3D model complexity, and visualization features enabled.
 
 ## Controls
 
@@ -246,178 +279,6 @@ Actual performance depends on particle density, 3D model complexity, and visuali
 - **Ctrl+S**: Save scenario
 - **Ctrl+O**: Load scenario
 - **Esc**: Exit
-mkdir -p build && cd build
-cmake .. -DUSE_CUDA=ON -DUSE_OPENMP=ON
-make -j$(nproc)
-cd ../..
-```
-
-5. Run application:
-```bash
-# With CPU-based mock engine (no build required)
-python main.py
-
-# With C++ engine (after build)
-python main.py --engine cpp --backend openmp
-
-# With CUDA GPU (RTX 3050/4050)
-python main.py --engine cpp --backend cuda
-```
-
-### Windows Setup
-
-1. Clone repository:
-```cmd
-git clone https://github.com/SharonMathew4/StellarForge.git
-cd StellarForge
-```
-
-2. Create virtual environment:
-```cmd
-python -m venv venv
-venv\Scripts\activate
-```
-
-3. Install Python dependencies:
-```cmd
-python -m pip install --upgrade pip
-pip install -r requirements.txt
-```
-
-4. Build C++ physics engine (optional but recommended):
-
-**Prerequisites for C++ build:**
-- Install Visual Studio 2022 with C++ workload
-- Install CMake from https://cmake.org/download/
-- For CUDA: Install CUDA Toolkit from https://developer.nvidia.com/cuda-downloads
-
-**Without CUDA (CPU-only with OpenMP):**
-```cmd
-build_engine.bat
-```
-
-**With CUDA (GPU acceleration):**
-```cmd
-build_with_cuda.bat
-```
-
-Or manually:
-```cmd
-cd cpp_engine
-mkdir build && cd build
-cmake .. -DUSE_CUDA=ON -DUSE_OPENMP=ON -G "Visual Studio 17 2022"
-cmake --build . --config Release
-cd ..\..
-```
-
-5. Run application:
-```cmd
-# With CPU-based mock engine (no build required)
-python main.py
-
-# With C++ engine (after build)
-python main.py --engine cpp --backend openmp
-
-# With CUDA GPU (RTX 3050/4050)
-python main.py --engine cpp --backend cuda
-```
-
-## Running the Application
-
-Launch using command line with optional parameters:
-
-```bash
-# Default: MockEngine (pure Python, no C++ build required)
-python main.py
-
-# With C++ engine and multi-threaded CPU
-python main.py --engine cpp --backend openmp
-
-# With GPU acceleration (NVIDIA CUDA)
-python main.py --engine cpp --backend cuda
-
-# View available options
-python main.py --help
-```
-
-## Configuration
-
-Application settings are in `config/default_settings.json`:
-
-- Window dimensions and title
-- Default particle counts per galaxy
-- Camera zoom and FOV parameters
-- Physics simulation timestep
-- Procedural generation parameters
-
-Modify as needed for your system specifications.
-## Architecture
-
-**Engine Bridge Pattern**: SimulationEngine abstract interface allows swapping physics backends.
-
-Available implementations:
-- `MockEngine`: Pure Python, development/testing
-- `CppEngine`: C++ with CUDA/OpenMP backends, production
-
-```python
-# Optional - C++ bindings only available after successful build
-from engine_bridge import CppEngine
-engine = CppEngine(backend='cuda')
-engine.initialize(100000)  # 100k particles
-engine.step(0.016)  # 16ms timestep
-positions = engine.get_positions()
-```
-
-**Compute Backends**:
-- `openmp`: Multi-threaded CPU via OpenMP
-- `cuda`: NVIDIA CUDA GPU acceleration
-- `single`: Single-threaded CPU (testing only)
-
-## Performance
-
-Tested on RTX 4050:
-- MockEngine: 1,000 particles at 60 FPS
-- CppEngine (OpenMP): 10,000 particles at 60 FPS
-- CppEngine (CUDA): 100,000 particles at 60 FPS
-- CppEngine (CUDA): 1,000,000 particles at 30 FPS
-
-## Technology Stack
-
-| Component | Technology |
-|-----------|-----------|
-| GUI | PyQt6 |
-| Visualization | VisPy + OpenGL |
-| Physics | C++ with CUDA/OpenMP |
-| Python bindings | pybind11 |
-| Build system | CMake |
-| Data storage | HDF5 |
-
-## Dependencies
-
-### Python
-- PyQt6 >= 6.6.0
-- NumPy >= 1.24.0
-- VisPy >= 0.14.0
-- h5py >= 3.10.0
-- scipy, astropy, noise
-
-### C++ (optional)
-- CMake >= 3.20
-- CUDA Toolkit >= 11.8 (optional)
-- OpenMP (included with most compilers)
-
-## Troubleshooting
-
-**Black screen in visualization:**
-Ensure graphics drivers are current. Update VisPy if needed.
-
-**C++ engine fails to load:**
-Verify build completed successfully: `python verify_engine.py`
-
-**Performance issues:**
-- Reduce particle count
-- Use CUDA backend if available
-- Disable timeline visualization features
 
 ## License
 
